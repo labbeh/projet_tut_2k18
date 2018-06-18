@@ -9,8 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+//import java.awt.event.ItemEvent;
+//import java.awt.event.ItemListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,18 +18,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
  * @author labbeh
  */
-public class LanceurGraphique extends JFrame implements ActionListener, ItemListener
+public class LanceurGraphique extends JFrame implements ActionListener, ListSelectionListener
 {
     private static final String[] TYPE_JEU = new String[]{"Kingdomino", "Santorini"};
     
     private JLabel labImage;
     
-    private JComboBox choixJeu;
+    private JList<String> choixJeu;
     
     private JPanel  panelBtn  ;
     private JButton btnValider;
@@ -41,7 +43,7 @@ public class LanceurGraphique extends JFrame implements ActionListener, ItemList
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        this.choixJeu = new JComboBox(LanceurGraphique.TYPE_JEU);
+        this.choixJeu = new JList<>(LanceurGraphique.TYPE_JEU);
         
         this.panelBtn   = new JPanel (         );
         this.btnValider = new JButton("Valider");
@@ -52,7 +54,7 @@ public class LanceurGraphique extends JFrame implements ActionListener, ItemList
         
         // ajout des écouteurs
         this.btnValider.addActionListener(this);
-        this.choixJeu.addActionListener(this);
+        this.choixJeu.addListSelectionListener(this);
         
         // ajout des éléments à la fenêtre
         this.add(this.choixJeu, BorderLayout.NORTH);
@@ -78,15 +80,19 @@ public class LanceurGraphique extends JFrame implements ActionListener, ItemList
     @Override
     public void actionPerformed(ActionEvent evt)
     {
-        if(this.choixJeu.getSelectedItem().equals(LanceurGraphique.TYPE_JEU[0]))
+        /*if(this.choixJeu.getSelectedItem().equals(LanceurGraphique.TYPE_JEU[0]))
+            this.setImage("kingLogo.jpg");
+        else
+            this.setImage("santoLogo.jpg");*/
+    }
+
+
+    @Override
+    public void valueChanged(ListSelectionEvent evt)
+    {
+        if(this.choixJeu.getSelectedValue().equals(LanceurGraphique.TYPE_JEU[0]))
             this.setImage("kingLogo.jpg");
         else
             this.setImage("santoLogo.jpg");
-    }
-
-    @Override
-    public void itemStateChanged(ItemEvent evt)
-    {
-        
     }
 }
