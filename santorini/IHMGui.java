@@ -9,6 +9,10 @@ package projet_tut_2018.santorini;
  *
  * @author labbeh
  */
-public class IHMGui {
-    
+public class IHMGui
+{
+    public IHMGui()
+    {
+        
+    }
 }
