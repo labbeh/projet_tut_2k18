@@ -42,6 +42,8 @@ public class Plateau
         
         this.ensJoueur[0] = new Joueur(joueur1, this);
         this.ensJoueur[1] = new Joueur(joueur2, this);
+        
+        this.grilleJeu[2][1] = 0;                           //permet de mettre en 2/1 la taille 0 a la tour
     }
     
     /*-------------------*/
@@ -115,66 +117,63 @@ public class Plateau
         if (ligne  != 0 && colonne != 0 && ligne != 4 && colonne != 4)
         {
             for (int cptLigne = -1; cptLigne < 1; cptLigne++)
-            {
                 for (int cptColonne = -1; cptColonne < 1; cptColonne++)
-                {
-                    if(this.grilleJeu[ligne + cptLigne][colonne + cptColonne] - hauteur <= 1 && grilleBat[ligne + cptLigne][colonne + cptColonne] == null){sortiePossible ++;}
-                }
-            }
-        }
+                    if(this.grilleJeu[ligne + cptLigne][colonne + cptColonne] - hauteur <= 1 && grilleBat[ligne + cptLigne][colonne + cptColonne] == null)
+                        sortiePossible ++;
+        }    
         else if(ligne == 0 && colonne == 0)
         {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne + 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne  + 1][colonne + 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null) sortiePossible++; 
+            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null) sortiePossible++; 
+            if(this.grilleJeu[ligne + 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne  + 1][colonne + 1] == null) sortiePossible++;
         }
         else if(ligne == 4 && colonne == 0)
         {
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne - 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne + 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null) sortiePossible++;
+            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null) sortiePossible++;
+            if(this.grilleJeu[ligne - 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne + 1] == null) sortiePossible++;
         }
         else if(ligne == 0 && colonne == 4)
         {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne + 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne + 1][colonne - 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null) sortiePossible++;
+            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null) sortiePossible++;
+            if(this.grilleJeu[ligne + 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne + 1][colonne - 1] == null) sortiePossible++;
         }
         else if(ligne == 4 && colonne == 4)
         {
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne - 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne - 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null) sortiePossible++;
+            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null) sortiePossible++;
+            if(this.grilleJeu[ligne - 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne - 1] == null) sortiePossible++;
         }
         else if(ligne == 0 || ligne == 4)
         {
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null) sortiePossible++;
+            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null) sortiePossible++;
             
             for (int cptColonne = -1; cptColonne < 1; cptColonne++)
             {
-                if(this.grilleJeu[0][colonne + cptColonne] - hauteur <= 1 && grilleBat[0][colonne + cptColonne] == null){sortiePossible++;}
+                if(this.grilleJeu[0][colonne + cptColonne] - hauteur <= 1 && grilleBat[0][colonne + cptColonne] == null) sortiePossible++;
             }
             for (int cptColonne = -1; cptColonne < 1; cptColonne++)
             {
-                if(this.grilleJeu[4][colonne + cptColonne] - hauteur <= 1 && grilleBat[4][colonne + cptColonne] == null){sortiePossible++;}
+                if(this.grilleJeu[4][colonne + cptColonne] - hauteur <= 1 && grilleBat[4][colonne + cptColonne] == null) sortiePossible++;
             }
         }
         else if(colonne == 0 || colonne == 4)
         {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null) sortiePossible++;
+            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null) sortiePossible++;
             
             for (int cptLigne = -1; cptLigne < 1; cptLigne++)
             {
-                if(this.grilleJeu[ligne + cptLigne][0] - hauteur <= 1 && grilleBat[ligne + cptLigne][0] == null){sortiePossible++;}
+                if(this.grilleJeu[ligne + cptLigne][0] - hauteur <= 1 && grilleBat[ligne + cptLigne][0] == null) sortiePossible++;
             }
             for (int cptLigne = -1; cptLigne < 1; cptLigne++)
             {
-                if(this.grilleJeu[ligne + cptLigne][4] - hauteur <= 1 && grilleBat[ligne + cptLigne][4] == null){sortiePossible++;}
+                if(this.grilleJeu[ligne + cptLigne][4] - hauteur <= 1 && grilleBat[ligne + cptLigne][4] == null) sortiePossible++;
             }
         }
-        if(sortiePossible >= 1){return false;}
+        if(sortiePossible >= 1) return false;
         return true;
     }
     /**
@@ -183,9 +182,9 @@ public class Plateau
      */
     public Joueur estBloque()
     {
-        if(estBloqueUnitaire(this.ensJoueur[0].getBatisseur(1)) && estBloqueUnitaire(this.ensJoueur[0].getBatisseur(2))){return this.ensJoueur[0];}
+        if(estBloqueUnitaire(this.ensJoueur[0].getBatisseur(1)) && estBloqueUnitaire(this.ensJoueur[0].getBatisseur(2))) return this.ensJoueur[0];
         
-        if(estBloqueUnitaire(this.ensJoueur[1].getBatisseur(1)) && estBloqueUnitaire(this.ensJoueur[1].getBatisseur(2))){return this.ensJoueur[1];}
+        if(estBloqueUnitaire(this.ensJoueur[1].getBatisseur(1)) && estBloqueUnitaire(this.ensJoueur[1].getBatisseur(2))) return this.ensJoueur[1];
         
         return null;        
     }
@@ -201,10 +200,7 @@ public class Plateau
             {
                 Batisseur batisseur = ensJoueur[cptJoueur].getBatisseur(cptBatisseur+1);
                 
-                if( grilleJeu[batisseur.getLigne()][batisseur.getColonne()] == 3 ) 
-                {
-                    return true;
-                }
+                if( grilleJeu[batisseur.getLigne()][batisseur.getColonne()] == 3 ) return true;
             }
         }
         return false;
@@ -300,4 +296,3 @@ public class Plateau
     }
     
 }
-

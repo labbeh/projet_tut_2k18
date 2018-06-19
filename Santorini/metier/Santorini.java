@@ -75,15 +75,10 @@ public class Santorini
                 choixNomValide = false;
                 ensNom[cpt] = clavier.nextLine();
                 
-                if( ensNom[cpt].length() > 0 ) 
-                {
-                    choixNomValide = true;
-                }
-                else
-                {
-                    System.out.print( "Veuillez entrer au moins un caractere et faites en sorte que les "
+                if( ensNom[cpt].length() > 0 )  choixNomValide = true;
+                else System.out.print( "Veuillez entrer au moins un caractere et faites en sorte que les "
                                       + "premiers caracteres soit different ! :  "                        );
-                }
+                
                 
             }while( !choixNomValide );
             
@@ -116,17 +111,13 @@ public class Santorini
                         ligne   = Character.toUpperCase(position.charAt(0))-'A'     ;
                         colonne = Character.getNumericValue(position.charAt(2)) - 1 ;
                          
-                        if(grilleJeu.getJoueur(cptJoueur).initBatisseur(cptBatisseur, ligne, colonne))
-                        {
-                            positionValide = true;
-                        }
+                        if(grilleJeu.getJoueur(cptJoueur).initBatisseur(cptBatisseur, ligne, colonne)) positionValide = true;
+                        
                         
                     }
-                    if(!positionValide)
-                    {
-                        System.out.print("Saisie invalide ! veuillez choisir une case disponible "
+                    if(!positionValide)System.out.print("Saisie invalide ! veuillez choisir une case disponible "
                                          + "et à votre portee ! :  "                               );
-                    }
+                    
                 }while(!positionValide);
             }
             
@@ -189,10 +180,8 @@ public class Santorini
                         choixBatValide = true;
                 }
                 
-                if( !choixBatValide )
-                {   
-                    System.out.print("Veuillez selectionner le batisseur 1 ou 2 ! :  ");
-                }
+                if( !choixBatValide ) System.out.print("Veuillez selectionner le batisseur 1 ou 2 ! :  ");
+                
             }while( !choixBatValide );
             
             
@@ -213,16 +202,11 @@ public class Santorini
                 
                 if( choixDeplacement.equals("N") || choixDeplacement.equals("S") || choixDeplacement.equals("E") || choixDeplacement.equals("O") ||
                     choixDeplacement.equals("NE") || choixDeplacement.equals("NO") || choixDeplacement.equals("SE") || choixDeplacement.equals("SO")) 
-                {
-                    if( grilleJeu.getJoueur(nbTour%2).deplacement(choixBatisseur, choixDeplacement) )
-                    {
-                        choixDepValide = true;
-                    }
-                }
-                if( !choixDepValide )
-                {
-                    System.out.print("Veuillez choisir un deplacement possible ! :  ");
-                }
+                    if( grilleJeu.getJoueur(nbTour%2).deplacement(choixBatisseur, choixDeplacement) ) choixDepValide = true;
+                    
+                
+                if( !choixDepValide ) System.out.print("Veuillez choisir un deplacement possible ! :  ");
+                
                 
             } while( !choixDepValide );
             
@@ -250,16 +234,11 @@ public class Santorini
                 
                 if( choixConstruction.equals("N") || choixConstruction.equals("S") || choixConstruction.equals("E") || choixConstruction.equals("O") || 
                     choixConstruction.equals("NE") || choixConstruction.equals("NO") || choixConstruction.equals("SE") || choixConstruction.equals("SO")) 
-                {
-                    if( grilleJeu.placerBloc(choixConstruction, nbTour%2, choixBatisseur)) 
-                    {
-                        choixConValide = true;
-                    }
-                }
-                if( !choixConValide ) 
-                {
-                    System.out.print("Veuillez choisir un emplacement de construction valide ! :  ");
-                }
+                    if( grilleJeu.placerBloc(choixConstruction, nbTour%2, choixBatisseur)) choixConValide = true;
+                    
+                
+                if( !choixConValide )  System.out.print("Veuillez choisir un emplacement de construction valide ! :  ");
+                
                 
             }
             
@@ -267,23 +246,17 @@ public class Santorini
             nbTour++;
             
         }
-        
-        
-        
+                
         /*----------------*/
         /*Fin de la partie*/
         /*----------------*/
         
         System.out.println(                                                                 );
         System.out.println(                                                                 );
-        if(grilleJeu.estBloque() == null)
-        {
-            System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour-1)%2).getNom() +" !"  );
-        }
-        else
-        {
-            System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour)%2).getNom() +" !"  );
-        }
+        
+        if(grilleJeu.estBloque() == null) System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour-1)%2).getNom() +" !"  );
+        else System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour)%2).getNom() +" !"  );
+        
         System.out.println("        Tu as remporte cette partie de Santorini ! "            );
         System.out.println("_______________________________________________________________");
         System.out.println(                                                                 );
