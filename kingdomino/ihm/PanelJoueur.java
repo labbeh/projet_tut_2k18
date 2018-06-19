@@ -28,12 +28,13 @@ public class PanelJoueur extends JPanel
     private JButton[][] tabBtnsTuiles;
     private static final int DIMENSION_CASE = 145;
     
-    private String nomFich = "IHMGui.java";
+    private String nomFich = "./imgs/tuileDepart.gif";
     private BufferedImage image;// = Toolkit.getDefaultToolkit().getImage(nomFich);
     
     
     public PanelJoueur()
     {
+        System.out.println(System.getProperty("user.dir"));
         //this.setLayout(new GridLayout(5,5));
         
         //MediaTracker track = new MediaTracker(this);
@@ -41,18 +42,19 @@ public class PanelJoueur extends JPanel
          //super();
                 try
                 {
-                        image = ImageIO.read(new File(this.nomFich));
+                    image = ImageIO.read(new File(this.nomFich));
                 }
                 catch(IOException e)
                 {
-                        image = null;
-                        e.printStackTrace();
+                    image = null;
+                    e.printStackTrace();
                 }
         
         /*try{ track.waitForID(0);}
         catch(InterruptedException evt){}*/
     }
     
+    @Override
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
