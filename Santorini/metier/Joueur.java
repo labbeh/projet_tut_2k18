@@ -95,7 +95,7 @@ public class Joueur
     public String    getNom      ()                {return this.nom;}
     /**
      * Accesseur Couleur
-     * @return la couleur du joueur
+     * @return la couleur du joueur 
      */
     public String getCouleur()      {return this.couleur;}
 }

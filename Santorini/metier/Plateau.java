@@ -56,7 +56,7 @@ public class Plateau
      * @param joueur Le Joueur choisie
      * @param bati Le Batisseur choisie
      * @return Si on a pu placer le bloc ou non
-     */
+     */ 
     
     public boolean placerBloc(String direction ,int joueur ,int bati)                                   //Place un bloc en en fonction de la direction et du batisseur selectionné
     {

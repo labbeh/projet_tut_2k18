@@ -252,7 +252,7 @@ public class Santorini
         /*----------------*/
         
         System.out.println(                                                                 );
-        System.out.println(                                                                 );
+        System.out.println(                                                                 ); 
         
         if(grilleJeu.estBloque() == null) System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour-1)%2).getNom() +" !"  );
         else System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour)%2).getNom() +" !"  );

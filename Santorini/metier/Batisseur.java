@@ -50,7 +50,7 @@ public class Batisseur {
      */
     public boolean deplacement(String direction)
     {
-        boolean reussite = false;
+        boolean reussite = false; 
         int tmpLigne     = this.posLigne;            //creation de valeur temporaire pour les test
         int tmpColonne   = this.posColonne;
         
