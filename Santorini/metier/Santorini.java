@@ -6,7 +6,6 @@
 package Santorini.metier;
 
 import java.util.Scanner;
-import static utilitaires.Clavier.lireString;
 
 public class Santorini 
 {
