@@ -6,6 +6,7 @@
 package Santorini.metier;
 
 import java.util.Scanner;
+import static utilitaires.Clavier.lireString;
 
 public class Santorini 
 {
@@ -164,6 +165,28 @@ public class Santorini
             /*Choix du batisseur a deplacer*/
             /*-----------------------------*/
             
+            
+            public static int lireint()
+            {
+                int     iRet = 0    ;
+                boolean bOk  = false;
+
+                while(!bOk)
+                {
+                    try{
+                        iRet = Integer.parseInt(lireString());
+                        bOk = true;
+                    }
+                    catch(NumberFormatException evt){
+                        System.out.println("Erreur: saisir un nombre entier");
+                    }
+                }
+                return iRet;
+            }
+            
+            
+            
+            
             System.out.println();
             System.out.print(tourJoueur +", veuillez choisir un batisseur a deplacer (1 ou 2) :  ");
             choixBatisseur = 0;
@@ -173,11 +196,11 @@ public class Santorini
             {
                 tmpChoixBat = clavier.nextLine(); 
 
-                if( tmpChoixBat.length() == 1 )
+                if( tmpChoixBat.length() == 1 && )
                 {
                     choixBatisseur = Integer.parseInt(tmpChoixBat);
 
-                    if( (choixBatisseur == 1 || choixBatisseur == 2) && !grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur))) 
+                    if( (choixBatisseur == 1 || choixBatisseur == 2) /*&& !grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur))*/) 
                     {
                         choixBatValide = true;
                     }
