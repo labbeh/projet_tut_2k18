@@ -1,3 +1,8 @@
+/**
+ * @author Lechanoine,Levallois,Beaumont,Lebosse,Labbe,Dupont
+ * @date 18/06/2018
+ * @version 1.0
+ */
 package Santorini.metier;
 
 import java.util.Scanner;
@@ -25,11 +30,15 @@ public class Plateau
     /*   CONSTRUCTEUR    */
     /*-------------------*/
     
-    public Plateau(String joueur1, String joueur2)                                                        // Initialisation de la grille de jeu
+    /**
+     * Creer le plateau de jeu
+     * @param joueur1 Nom du joueur 1
+     * @param joueur2 Nom du joueur 2
+     */
+    public Plateau(String joueur1, String joueur2)                                                      // Initialisation de la grille de jeu
     {
         this.grilleJeu = new int[this.NB_LIGNE][this.NB_COLONNE];
         this.ensJoueur = new Joueur[NB_JOUEUR];
-        
         
         this.ensJoueur[0] = new Joueur(joueur1, this);
         this.ensJoueur[1] = new Joueur(joueur2, this);
@@ -39,37 +48,47 @@ public class Plateau
     /*     METHODES      */
     /*-------------------*/  
     
+    /**
+     * Place un bloc avec le Batisseur chosie et la direction chosie  
+     * @param direction direction ou est placer le bloc
+     * @param joueur Le Joueur choisie
+     * @param bati Le Batisseur choisie
+     * @return Si on a pu placer le bloc ou non
+     */
+    
     public boolean placerBloc(String direction ,int joueur ,int bati)                                   //Place un bloc en en fonction de la direction et du batisseur selectionné
     {
         boolean resultat = false;
         Batisseur batisseur = ensJoueur[joueur].getBatisseur(bati);
-        int tmpLigne    = batisseur.getLigne();
+        
+        int tmpLigne     = batisseur.getLigne()  ;
         int tmpColonne   = batisseur.getColonne();
-        int tmpHauteur  = 0;
+        int tmpHauteur   = 0;
         
         switch (direction)
         {
-            case "N"  : tmpLigne --; 
+            case "N"  : tmpLigne   --; 
                 break;
-            case "NE" : tmpLigne --;
+            case "NE" : tmpLigne   --;
                         tmpColonne ++;
                 break;
-            case "NO" : tmpLigne --;
+            case "NO" : tmpLigne   --;
                         tmpColonne --;
                 break;
             case "E"  : tmpColonne ++;
                 break;
             case "O"  : tmpColonne --;
                 break;
-            case "S"  : tmpLigne ++;
+            case "S"  : tmpLigne   ++;
                 break;
-            case "SE" : tmpLigne ++;
+            case "SE" : tmpLigne   ++;
                         tmpColonne ++;
                 break;
-            case "SO" : tmpLigne ++;
+            case "SO" : tmpLigne   ++;
                         tmpColonne --;
                 break;
         }
+        
         if(tmpLigne >= 0 && tmpLigne <= 4 && tmpColonne >= 0 && tmpColonne <= 4 && (batisseur.grilleBat[tmpLigne][tmpColonne] == null))
         {
             if(this.grilleJeu[tmpLigne][tmpColonne] < 4)
@@ -77,33 +96,15 @@ public class Plateau
                 this.grilleJeu[tmpLigne][tmpColonne] ++;
                 resultat = true;
             }
-            
         }
         
         return resultat;
     }
-    
-    public int getHauteur(int lig, int col){return this.grilleJeu[lig][col];}
-    public int getNbLig(){ return this.grilleJeu.length; }
-    public int getNbCol(){ return this.grilleJeu[0].length;}
-    public Joueur getJoueur(int numJoueur){ return this.ensJoueur[numJoueur];}
-    
-    public boolean aGagne()
-    {
-        for( int cptJoueur = 0; cptJoueur < NB_JOUEUR; cptJoueur++) 
-        {
-            for( int cptBatisseur = 0; cptBatisseur < NB_BATISSEUR; cptBatisseur++) 
-            {
-                Batisseur batisseur = ensJoueur[cptJoueur].getBatisseur(cptBatisseur+1);
-                
-                if( grilleJeu[batisseur.getLigne()][batisseur.getColonne()] == 3 ) 
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    /**
+     * Test si le Batisseur chosie est bloque
+     * @param batisseur le batissuer choisie
+     * @return vrai si le Batisseur est bloque
+     */
     public boolean estBloqueUnitaire(Batisseur batisseur)
     {
         int hauteur =  this.grilleJeu[batisseur.getLigne()][batisseur.getColonne()];
@@ -139,7 +140,7 @@ public class Plateau
         }
         else if(ligne == 4 && colonne == 4)
         {
-            if(this.grilleJeu[ligne +1][colonne] - hauteur <= 1){sortiePossible++;}
+            if(this.grilleJeu[ligne +1][colonne]  - hauteur <= 1){sortiePossible++;}
             if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1){sortiePossible++;}
         }
         else if(ligne == 0 || ligne == 4)
@@ -156,6 +157,10 @@ public class Plateau
         if(sortiePossible >= 1){return false;}
         return true;
     }
+    /**
+     * Test si un des joueur est totalement bloquer
+     * @return Le joueur bloquer
+     */
     public Joueur estBloque()
     {
         if(estBloqueUnitaire(this.ensJoueur[0].getBatisseur(1)) && estBloqueUnitaire(this.ensJoueur[0].getBatisseur(2))){return this.ensJoueur[0];}
@@ -164,6 +169,30 @@ public class Plateau
         
         return null;        
     }
+    /**
+     * Test pour tout les Batiseur si il ont gagner
+     * @return Vrai si un des batisseur a gagner
+     */
+    public boolean aGagne()
+    {
+        for( int cptJoueur = 0; cptJoueur < NB_JOUEUR; cptJoueur++) 
+        {
+            for( int cptBatisseur = 0; cptBatisseur < NB_BATISSEUR; cptBatisseur++) 
+            {
+                Batisseur batisseur = ensJoueur[cptJoueur].getBatisseur(cptBatisseur+1);
+                
+                if( grilleJeu[batisseur.getLigne()][batisseur.getColonne()] == 3 ) 
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    /**
+     * Fusion du tableau de Batisseur et d'etage
+     * @return Le tableau fusionner
+     */
     public String[][] fusionTab()
     {
         String grilleAffi[][] = new String[this.grilleJeu.length][this.grilleJeu.length];
@@ -187,12 +216,50 @@ public class Plateau
         
         return grilleAffi;
     }
-    public String toString()            //String.format("%2s", "")
+    
+    
+    /*-------------------*/
+    /*    ACCESSEURS     */
+    /*-------------------*/
+    
+    /**
+     * Accesseur Hauteur
+     * @param lig
+     * @param col
+     * @return 
+     */
+    public int getHauteur  (int lig, int col){return this.grilleJeu[lig][col]; }
+    /**
+     * Accesseur nombre de ligne
+     * @return Le nombre de ligne
+     */
+    public int getNbLig    ()                {return this.grilleJeu.length;    }
+    /**
+     * Accesseur nombre de colonne
+     * @return Le nombre de colonne
+     */
+    public int getNbCol    ()                {return this.grilleJeu[0].length; }
+    /**
+     * Accesseur Joueur 
+     * @param numJoueur choisie quelle joueur
+     * @return Le joueur choisie
+     */
+    public Joueur getJoueur(int numJoueur)   {return this.ensJoueur[numJoueur];}
+    
+    
+    
+    
+    /**
+     * Affiche le tableau du jeu 
+     * @return Le tableau finale
+     */
+    public String toString()
     {   
         String grilleAffi[][] = fusionTab();
         
-        
-        return    "\n     |  1  |  2  |  3  |  4  |  5  |"
+        return    "\nLa couleur de " + this.ensJoueur[0].getNom() + " est " + this.ensJoueur[0].getCouleur() 
+                + "\nLa couleur de " + this.ensJoueur[1].getNom() + " est " + this.ensJoueur[1].getCouleur()
+                + "\n     |  1  |  2  |  3  |  4  |  5  |"
                 + "\n_____|_____|_____|_____|_____|_____|"
                 + "\n     |     |     |     |     |     |"
                 + "\n  A  |"+String.format("%5s", grilleAffi[0][0])+"|"+String.format("%5s", grilleAffi[0][1])+"|"+String.format("%5s", grilleAffi[0][2])+"|"+String.format("%5s", grilleAffi[0][3])+"|"+String.format("%5s", grilleAffi[0][4])+"|"
@@ -212,6 +279,5 @@ public class Plateau
                 
     }
     
-
 }
 

@@ -1,3 +1,8 @@
+/**
+ * @author Lechanoine,Levallois,Beaumont,Lebosse,Labbe,Dupont
+ * @date 18/06/2018
+ * @version 1.0
+ */
 package Santorini.metier;
 
 import java.util.Scanner;
@@ -17,21 +22,22 @@ public class Santorini
         /*     VARIABLES     */
         /*-------------------*/
         
-        int ligne  ;
-        int colonne;
-        int nbTour ;
-        int choixBatisseur;
-        String tourJoueur;
-        String tmpChoixBat;
-        String choixDeplacement;
-        String choixConstruction;
-        String ensNom[];
-        String position;
         boolean choixNomValide;
         boolean positionValide;
         boolean choixBatValide;
         boolean choixDepValide;
         boolean choixConValide;
+        String choixConstruction;
+        String choixDeplacement;
+        String tmpChoixBat;
+        String tourJoueur;
+        String ensNom[];
+        String position;
+        int choixBatisseur;
+        int ligne  ;
+        int colonne;
+        int nbTour ;
+        
         Plateau grilleJeu;
         
         Scanner clavier = new Scanner(System.in);                               // Initialisation du scanner pour lire les entrées clavier
@@ -96,7 +102,6 @@ public class Santorini
             for (int cptBatisseur = 0; cptBatisseur < NB_BATISSEUR; cptBatisseur++) 
             {
                 System.out.println(grilleJeu.toString());   // On affiche la grille de jeu
-                
                 System.out.println(                                                                                        );   // Demande de la saisie de la position
                 System.out.print  ( ensNom[cptJoueur] +", ou voulez-vous placer votre batisseur n°"+ (cptBatisseur+1) +" ?");
                 System.out.print  ("(Veuillez saisir une case sous la forme Lettre,Chiffre) :  "                           );

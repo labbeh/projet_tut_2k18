@@ -1,3 +1,8 @@
+/**
+ * @author Lechanoine,Levallois,Beaumont,Lebosse,Labbe,Dupont
+ * @date 18/06/2018
+ * @version 1.0
+ */
 package Santorini.metier;
 
 public class Batisseur {
@@ -13,16 +18,21 @@ public class Batisseur {
     /*-------------------*/
     
     static String[][] grilleBat = new String[TAILLE_GRILLE][TAILLE_GRILLE];
+    private int posLigne   ;
+    private int posColonne ;
     private Plateau plateau;
-    private String id;
-    private int posLigne  ;
-    private int posColonne;
     boolean depla = false;
+    private String id;
     
     /*-------------------*/
     /*   CONSTRUCTEUR    */
     /*-------------------*/
     
+    /**
+     * Creer un Batisseur
+     * @param id permet de representer le Batisseur
+     * @param plateau donne l'acces au plateau aux Batisseur
+     */
     public Batisseur(String id ,Plateau plateau)
     {
         this.plateau = plateau;
@@ -33,13 +43,18 @@ public class Batisseur {
     /*     METHODES      */
     /*-------------------*/
     
+    /**
+     * Permet de tester si l'emplacement a la direction demandé est disponible si oui bouge le batisseur
+     * @param direction permet de choisir la direction de mouvement au format (N,NE,NO,E,O,S,SE,SO)
+     * @return 
+     */
     public boolean deplacement(String direction)
     {
         boolean reussite = false;
-        int tmpLigne     = this.posLigne;
+        int tmpLigne     = this.posLigne;            //creation de valeur temporaire pour les test
         int tmpColonne   = this.posColonne;
         
-        switch (direction)
+        switch (direction)                            //chagement des valeur par rapport au choix du joueur
         {
             case "N"  : tmpLigne   --; 
                 break;
@@ -62,18 +77,17 @@ public class Batisseur {
                         tmpColonne --;
                 break;
         }
-        
         boolean montee = false;
         
-        if(tmpLigne >= 0 && tmpLigne <= 4 && tmpColonne >= 0 && tmpColonne <= 4)
+        if(tmpLigne >= 0 && tmpLigne <= 4 && tmpColonne >= 0 && tmpColonne <= 4)                    //test pour que les cordonné soit dans la grille
         {
             if(plateau.getHauteur(tmpLigne, tmpColonne) - plateau.getHauteur(this.posLigne, this.posColonne) ==  1 && 
                plateau.getHauteur(tmpLigne, tmpColonne) != 4 || 
-               plateau.getHauteur(tmpLigne, tmpColonne) - plateau.getHauteur(this.posLigne, this.posColonne) ==  0    ){}
+               plateau.getHauteur(tmpLigne, tmpColonne) - plateau.getHauteur(this.posLigne, this.posColonne) ==  0    ){}// test si la case visée est a la meme hauteur ou juste un niveau suppérieur
             else if(plateau.getHauteur(tmpLigne, tmpColonne) < plateau.getHauteur(this.posLigne, this.posColonne)){}
             else
             {
-                tmpLigne = -1;
+                tmpLigne = -1;              //donne des valeur impossible car la montée etait impossible
                 tmpColonne = -1;
             }
         }
@@ -81,9 +95,13 @@ public class Batisseur {
         
         return setPos(tmpLigne, tmpColonne);
     }
-    
-    
-    public boolean setPos(int tmpLigne, int tmpColonne)
+    /**
+     * permet de tester si la position est disponible et si oui affecte le batiseur sur la position
+     * @param tmpLigne est la ligne de la position a tester
+     * @param tmpColonne est la colone de a pisition a tester
+     * @return revoie si la position a ete afecte ou non
+     */
+    public boolean setPos(int tmpLigne, int tmpColonne) 
     {
         boolean reussite    = false;
         boolean bati        = false;
@@ -118,8 +136,20 @@ public class Batisseur {
     /*    ACCESSEURS     */
     /*-------------------*/
     
+    /**
+     * Accesseur Ligne
+     * @return la ligne du Batisseur
+     */
     public int getLigne  () {return this.posLigne;                         }
+    /**
+     * Accesseur Colonne
+     * @return la colone du Batisseur
+     */
     public int getColonne() {return this.posColonne;                       }
+    /**
+     * Accesseur hauteur
+     * @return la hauteur du Batisseur
+     */
     public int getPos    () {return (this.posLigne * 10) + this.posColonne;}
     
 }
