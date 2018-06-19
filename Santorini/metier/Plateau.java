@@ -121,7 +121,6 @@ public class Plateau
                     if(this.grilleJeu[ligne + cptLigne][colonne + cptColonne] - hauteur <= 1 && grilleBat[ligne + cptLigne][colonne + cptColonne] == null){sortiePossible ++;}
                 }
             }
-            sortiePossible --;
         }
         else if(ligne == 0 && colonne == 0)
         {
