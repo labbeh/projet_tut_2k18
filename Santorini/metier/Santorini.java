@@ -166,22 +166,43 @@ public class Santorini
             System.out.println();
             System.out.print(tourJoueur +", veuillez choisir un batisseur a deplacer (1 ou 2) :  ");
             choixBatisseur = 0;
+            
+            
+            /*
+            public static int lireint()
+            {
+                int     iRet = 0    ;
+                boolean bOk  = false;
 
+                while(!bOk)
+                {
+                    try{
+                        iRet = Integer.parseInt(lireString());
+                        bOk = true;
+                    }
+                    catch(NumberFormatException evt){
+                        System.out.println("Erreur: saisir un nombre entier");
+                    }
+                }
+                return iRet;
+            }*/
+            
             choixBatValide = false;
             do
-            {
-                try
-                {
-                    choixBatisseur = clavier.nextInt();
-                } 
-                catch(NumberFormatException evt)
-                {
-                    System.out.println("Erreur: saisir un nombre entier ! ");
+            {   
+                boolean correcte  = false;
+                
+                try{
+                    choixBatisseur = Integer.parseInt(clavier.next());
+                    correcte = true;
                 }
-
-                if( (choixBatisseur == 1 || choixBatisseur == 2) && !grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur))) 
+                catch(NumberFormatException evt){
+                    System.out.print("Veuillez saisir un nombre entier ! : ");
+                }
+                
+                if( (choixBatisseur == 1 || choixBatisseur == 2) && correcte) 
                 {
-                    if( grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)))
+                    if( grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)) )
                         System.out.println("Le batisseur "+ choixBatisseur +" est bloque ! Veuillez selectionner l'autre !");
                     else
                         choixBatValide = true;
@@ -191,7 +212,6 @@ public class Santorini
                 {   
                     System.out.print("Veuillez selectionner le batisseur 1 ou 2 ! :  ");
                 }
-                System.out.print(grilleJeu.estBloque());
             }while( !choixBatValide );
             
             
