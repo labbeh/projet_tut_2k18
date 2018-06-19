@@ -63,7 +63,6 @@ public class Plateau
         
         int tmpLigne     = batisseur.getLigne()  ;
         int tmpColonne   = batisseur.getColonne();
-        int tmpHauteur   = 0;
         
         switch (direction)
         {
@@ -108,6 +107,7 @@ public class Plateau
     public boolean estBloqueUnitaire(Batisseur batisseur)
     {
         int hauteur =  this.grilleJeu[batisseur.getLigne()][batisseur.getColonne()];
+        String grilleBat[][]  = this.ensJoueur[0].getBatisseur(1).grilleBat;
         int ligne =  batisseur.getLigne();
         int colonne =  batisseur.getColonne();
         int sortiePossible = 0;
@@ -118,40 +118,40 @@ public class Plateau
             {
                 for (int cptColonne = -1; cptColonne < 1; cptColonne++)
                 {
-                    if(this.grilleJeu[ligne + cptLigne][colonne + cptColonne] - hauteur <= 1){sortiePossible ++;}
+                    if(this.grilleJeu[ligne + cptLigne][colonne + cptColonne] - hauteur <= 1 && grilleBat[ligne + cptLigne][colonne + cptColonne] == null){sortiePossible ++;}
                 }
             }
             sortiePossible --;
         }
         else if(ligne == 0 && colonne == 0)
         {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
         }
         else if(ligne == 4 && colonne == 0)
         {
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1){sortiePossible++;}
+            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
         }
         else if(ligne == 0 && colonne == 4)
         {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
         }
         else if(ligne == 4 && colonne == 4)
         {
-            if(this.grilleJeu[ligne +1][colonne]  - hauteur <= 1){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1){sortiePossible++;}
+            if(this.grilleJeu[ligne +1][colonne]  - hauteur <= 1 && grilleBat[ligne +1][colonne] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
         }
         else if(ligne == 0 || ligne == 4)
         {
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1){sortiePossible++;}
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1){sortiePossible++;}
+            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
         }
         else if(colonne == 0 || colonne == 4)
         {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1){sortiePossible++;}
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
         }
         
         if(sortiePossible >= 1){return false;}

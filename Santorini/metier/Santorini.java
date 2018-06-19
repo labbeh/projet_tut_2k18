@@ -30,7 +30,6 @@ public class Santorini
         boolean choixConValide;
         String choixConstruction;
         String choixDeplacement;
-        String tmpChoixBat;
         String tourJoueur;
         String[] ensNom;
         String position;
@@ -165,28 +164,6 @@ public class Santorini
             /*Choix du batisseur a deplacer*/
             /*-----------------------------*/
             
-            
-            public static int lireint()
-            {
-                int     iRet = 0    ;
-                boolean bOk  = false;
-
-                while(!bOk)
-                {
-                    try{
-                        iRet = Integer.parseInt(lireString());
-                        bOk = true;
-                    }
-                    catch(NumberFormatException evt){
-                        System.out.println("Erreur: saisir un nombre entier");
-                    }
-                }
-                return iRet;
-            }
-            
-            
-            
-            
             System.out.println();
             System.out.print(tourJoueur +", veuillez choisir un batisseur a deplacer (1 ou 2) :  ");
             choixBatisseur = 0;
@@ -194,23 +171,26 @@ public class Santorini
             choixBatValide = false;
             do
             {
-                tmpChoixBat = clavier.nextLine(); 
-
-                if( tmpChoixBat.length() == 1 && )
+                try
                 {
-                    choixBatisseur = Integer.parseInt(tmpChoixBat);
-
-                    if( (choixBatisseur == 1 || choixBatisseur == 2) /*&& !grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur))*/) 
-                    {
-                        choixBatValide = true;
-                    }
+                    choixBatisseur = clavier.nextInt();
+                } 
+                catch(NumberFormatException evt)
+                {
+                    System.out.println("Erreur: saisir un nombre entier ! ");
                 }
-                if( !choixBatValide )
-                {   
+
+                if( (choixBatisseur == 1 || choixBatisseur == 2) && !grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur))) 
+                {
                     if( grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)))
                         System.out.println("Le batisseur "+ choixBatisseur +" est bloque ! Veuillez selectionner l'autre !");
                     else
-                        System.out.print("Choix non valide, veuillez selectionner le batisseur 1 ou 2 ! :  ");
+                        choixBatValide = true;
+                }
+                
+                if( !choixBatValide )
+                {   
+                    System.out.print("Veuillez selectionner le batisseur 1 ou 2 ! :  ");
                 }
                 System.out.print(grilleJeu.estBloque());
             }while( !choixBatValide );
@@ -222,6 +202,7 @@ public class Santorini
             /*  Choix de la direction du batisseur */
             /*-------------------------------------*/
             
+            clavier.nextLine();
             System.out.println();
             System.out.print(tourJoueur +",ou souhaitez vous déplacer votre batisseur (N,S,E,O,NE,SO,..) ? :  ");         
             
@@ -252,6 +233,8 @@ public class Santorini
             /*-------------------------------------*/
             /*Choix de la direction de construction*/
             /*-------------------------------------*/
+            
+            System.out.println();
             
             if( !grilleJeu.aGagne() && grilleJeu.estBloque() == null) 
             {
