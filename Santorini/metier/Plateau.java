@@ -15,10 +15,10 @@ public class Plateau
     private final int NB_BATISSEUR = 2;
         
     /*-------------------*/
-    /*     VARIABLES     */
+    /*     ATTRIBUTS     */
     /*-------------------*/
         
-    private int grilleJeu[][];  
+    private int  grilleJeu[][];  
     private Joueur ensJoueur[];
         
     /*-------------------*/
@@ -30,14 +30,16 @@ public class Plateau
         this.grilleJeu = new int[this.NB_LIGNE][this.NB_COLONNE];
         this.ensJoueur = new Joueur[NB_JOUEUR];
         
-        this.grilleJeu[0][3] = 3;
-        this.grilleJeu[1][3] = 2;
         
         this.ensJoueur[0] = new Joueur(joueur1, this);
         this.ensJoueur[1] = new Joueur(joueur2, this);
     }
-        
-    public boolean placerBloc(String direction ,int joueur ,int bati)
+    
+    /*-------------------*/
+    /*     METHODES      */
+    /*-------------------*/  
+    
+    public boolean placerBloc(String direction ,int joueur ,int bati)                                   //Place un bloc en en fonction de la direction et du batisseur selectionné
     {
         boolean resultat = false;
         Batisseur batisseur = ensJoueur[joueur].getBatisseur(bati);

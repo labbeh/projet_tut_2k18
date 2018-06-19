@@ -265,7 +265,14 @@ public class Santorini
         
         System.out.println(                                                                 );
         System.out.println(                                                                 );
-        System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour-1)%2) +" !"  );
+        if(grilleJeu.estBloque() == null)
+        {
+            System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour-1)%2).getNom() +" !"  );
+        }
+        else
+        {
+            System.out.println("        Bravo a toi "+ grilleJeu.getJoueur((nbTour)%2).getNom() +" !"  );
+        }
         System.out.println("        Tu as remporte cette partie de Santorini ! "            );
         System.out.println("_______________________________________________________________");
         System.out.println(                                                                 );
