@@ -81,9 +81,8 @@ public class Batisseur {
         
         if(tmpLigne >= 0 && tmpLigne <= 4 && tmpColonne >= 0 && tmpColonne <= 4)                    //test pour que les cordonné soit dans la grille
         {
-            if(plateau.getHauteur(tmpLigne, tmpColonne) - plateau.getHauteur(this.posLigne, this.posColonne) ==  1 && 
-               plateau.getHauteur(tmpLigne, tmpColonne) != 4 || 
-               plateau.getHauteur(tmpLigne, tmpColonne) - plateau.getHauteur(this.posLigne, this.posColonne) ==  0    ){}// test si la case visée est a la meme hauteur ou juste un niveau suppérieur
+            if(plateau.getHauteur(tmpLigne, tmpColonne) - plateau.getHauteur(this.posLigne, this.posColonne) <=  1 && 
+               plateau.getHauteur(tmpLigne, tmpColonne) != 4 ){}// test si la case visée est a la meme hauteur ou juste un niveau suppérieur
             else if(plateau.getHauteur(tmpLigne, tmpColonne) < plateau.getHauteur(this.posLigne, this.posColonne)){}
             else
             {
