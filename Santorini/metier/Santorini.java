@@ -31,7 +31,7 @@ public class Santorini
         String choixDeplacement;
         String tmpChoixBat;
         String tourJoueur;
-        String ensNom[];
+        String[] ensNom;
         String position;
         int choixBatisseur;
         int ligne  ;

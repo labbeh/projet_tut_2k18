@@ -12,7 +12,7 @@ public class Joueur
     /*-------------------*/
 
     private final int NB_BATISSEUR = 2 ;
-    private static final String[] ENSCOULEUR = {"Rouge" , "Vert" , "Bleu" , "Jaune"};
+    private static final String[] ENSCOULEUR = new String[]{"Rouge" , "Vert" , "Bleu" , "Jaune"};
     private static int NBJOUEUR = 0;
 
     

@@ -23,8 +23,8 @@ public class Plateau
     /*     ATTRIBUTS     */
     /*-------------------*/
         
-    private int  grilleJeu[][];  
-    private Joueur ensJoueur[];
+    private int[][]  grilleJeu;  
+    private Joueur[] ensJoueur;
         
     /*-------------------*/
     /*   CONSTRUCTEUR    */
