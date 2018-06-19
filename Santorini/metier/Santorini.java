@@ -197,7 +197,7 @@ public class Santorini
                     correcte = true;
                 }
                 catch(NumberFormatException evt){
-                    System.out.print("Veuillez saisir un nombre entier ! : ");
+                    System.out.println("Veuillez saisir un nombre entier ! : ");
                 }
                 
                 if( (choixBatisseur == 1 || choixBatisseur == 2) && correcte) 
