@@ -47,9 +47,9 @@ public class IHMGui extends JFrame
         // ajout des elts à la frame
         this.add(new JPanel().add(new JButton("ok")), BorderLayout.NORTH);
         
-        this.panelCentre.add(this.pltJoueur1, FlowLayout.LEFT  );
+        this.panelCentre.add(new JPanel(), FlowLayout.LEFT  );
         this.panelCentre.add(this.plateau   , FlowLayout.CENTER);
-        this.panelCentre.add(this.pltJoueur2, FlowLayout.RIGHT );
+        this.panelCentre.add(new JPanel(), FlowLayout.RIGHT );
         
         this.add(this.panelCentre);
         
