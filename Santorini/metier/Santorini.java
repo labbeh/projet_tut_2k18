@@ -168,25 +168,6 @@ public class Santorini
             choixBatisseur = 0;
             
             
-            /*
-            public static int lireint()
-            {
-                int     iRet = 0    ;
-                boolean bOk  = false;
-
-                while(!bOk)
-                {
-                    try{
-                        iRet = Integer.parseInt(lireString());
-                        bOk = true;
-                    }
-                    catch(NumberFormatException evt){
-                        System.out.println("Erreur: saisir un nombre entier");
-                    }
-                }
-                return iRet;
-            }*/
-            
             choixBatValide = false;
             do
             {   

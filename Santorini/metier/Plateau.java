@@ -121,39 +121,59 @@ public class Plateau
                     if(this.grilleJeu[ligne + cptLigne][colonne + cptColonne] - hauteur <= 1 && grilleBat[ligne + cptLigne][colonne + cptColonne] == null){sortiePossible ++;}
                 }
             }
-            sortiePossible --;
         }
         else if(ligne == 0 && colonne == 0)
         {
             if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
             if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne  + 1][colonne + 1] == null){sortiePossible++;}
         }
         else if(ligne == 4 && colonne == 0)
         {
             if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
             if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne - 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne + 1] == null){sortiePossible++;}
         }
         else if(ligne == 0 && colonne == 4)
         {
             if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
             if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne + 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne + 1][colonne - 1] == null){sortiePossible++;}
         }
         else if(ligne == 4 && colonne == 4)
         {
-            if(this.grilleJeu[ligne +1][colonne]  - hauteur <= 1 && grilleBat[ligne +1][colonne] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
             if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
+            if(this.grilleJeu[ligne - 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne - 1] == null){sortiePossible++;}
         }
         else if(ligne == 0 || ligne == 4)
         {
             if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null){sortiePossible++;}
             if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null){sortiePossible++;}
+            
+            for (int cptColonne = -1; cptColonne < 1; cptColonne++)
+            {
+                if(this.grilleJeu[0][colonne + cptColonne] - hauteur <= 1 && grilleBat[0][colonne + cptColonne] == null){sortiePossible++;}
+            }
+            for (int cptColonne = -1; cptColonne < 1; cptColonne++)
+            {
+                if(this.grilleJeu[4][colonne + cptColonne] - hauteur <= 1 && grilleBat[4][colonne + cptColonne] == null){sortiePossible++;}
+            }
         }
         else if(colonne == 0 || colonne == 4)
         {
             if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null){sortiePossible++;}
             if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null){sortiePossible++;}
+            
+            for (int cptLigne = -1; cptLigne < 1; cptLigne++)
+            {
+                if(this.grilleJeu[ligne + cptLigne][0] - hauteur <= 1 && grilleBat[ligne + cptLigne][0] == null){sortiePossible++;}
+            }
+            for (int cptLigne = -1; cptLigne < 1; cptLigne++)
+            {
+                if(this.grilleJeu[ligne + cptLigne][4] - hauteur <= 1 && grilleBat[ligne + cptLigne][4] == null){sortiePossible++;}
+            }
         }
-        
         if(sortiePossible >= 1){return false;}
         return true;
     }
