@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projet_tut_2018;
+//package projet_tut_2018;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -116,7 +116,12 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         else
         {
             this.msgErreur.setText("");
-            System.out.println("ok");
+            this.setVisible(false);
+            if(this.choixJeu.getSelectedValue().equals(LanceurGraphique.TYPE_JEU[0]))
+                this.setImage("kingLogo.jpg"); //remplacer par new kingdomino.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
+            else
+                new Santorini.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
+            
         }
     }
 
