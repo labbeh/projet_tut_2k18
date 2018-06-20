@@ -26,7 +26,7 @@ public class Controleur
     
     public static void main(String[] arg) 
     {
-        new Controleur("Joueur1","Joueur2");
+        new Controleur("Alban", "Theo");
     }
     
 }
