@@ -6,6 +6,7 @@
 package projet_tut_2018;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -33,7 +35,12 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
     
     private JList<String> choixJeu;
     
-    private JPanel  panelBtn  ;
+    private JTextField tfJ1;
+    private JTextField tfJ2;
+    
+    private JPanel  panelBtn;
+    //private JPanel  panelNom;
+    
     private JButton btnValider;
     
     public LanceurGraphique()
@@ -45,12 +52,26 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         
         this.choixJeu = new JList<>(LanceurGraphique.TYPE_JEU);
         
-        this.panelBtn   = new JPanel (         );
-        this.btnValider = new JButton("Valider");
-        this.labImage   = new JLabel (         );
+        this.panelBtn   = new JPanel    (         );
+        this.btnValider = new JButton   ("Valider");
+        this.labImage   = new JLabel    (         );
+        this.tfJ1       = new JTextField(         );
+        this.tfJ2       = new JTextField(         );
         
         // ajout du bouton à son panel
-        this.panelBtn.add(this.btnValider);
+        
+        this.panelBtn.setLayout(new BorderLayout());
+        
+        JPanel panelTf = new JPanel(new GridLayout(2,4));
+        
+        panelTf.add(new JLabel("Joueur 1: "));
+        panelTf.add(this.tfJ1);
+        
+        panelTf.add(new JLabel("Joueur 2: "));
+        panelTf.add(this.tfJ2);
+        
+        this.panelBtn.add(panelTf, BorderLayout.CENTER);
+        this.panelBtn.add(this.btnValider, BorderLayout.SOUTH);
         
         // ajout des écouteurs
         this.btnValider.addActionListener(this);
@@ -80,10 +101,7 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
     @Override
     public void actionPerformed(ActionEvent evt)
     {
-        /*if(this.choixJeu.getSelectedItem().equals(LanceurGraphique.TYPE_JEU[0]))
-            this.setImage("kingLogo.jpg");
-        else
-            this.setImage("santoLogo.jpg");*/
+        
     }
 
 
