@@ -98,7 +98,7 @@ public class Batisseur {
      * permet de tester si la position est disponible et si oui affecte le batiseur sur la position
      * @param tmpLigne est la ligne de la position a tester
      * @param tmpColonne est la colone de a pisition a tester
-     * @return revoie si la position a ete afecte ou non
+     * @return renvoie si la position a ete affecte ou non
      */
     public boolean setPos(int tmpLigne, int tmpColonne) 
     {

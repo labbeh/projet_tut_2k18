@@ -116,7 +116,7 @@ public class Santorini
                         
                     }
                     if(!positionValide)System.out.print("Saisie invalide ! veuillez choisir une case disponible "
-                                         + "et à votre portee ! :  "                               );
+                                                        + "et à votre portee ! :  "                               );
                     
                 }while(!positionValide);
             }

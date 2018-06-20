@@ -98,4 +98,12 @@ public class Joueur
      * @return la couleur du joueur 
      */
     public String getCouleur()      {return this.couleur;}
+    /**
+     * Accesseur nombre batisseur
+     * @return Le nombre max de Batisseur
+     */
+    public int getNbBatisseur()
+    {
+        return this.NB_BATISSEUR;
+    }
 }
