@@ -6,6 +6,7 @@
 package projet_tut_2018;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,8 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
 {
     private static final String[] TYPE_JEU = new String[]{"Kingdomino", "Santorini"};
     
-    private JLabel labImage;
+    private JLabel labImage ;
+    private JLabel msgErreur;
     
     private JList<String> choixJeu;
     
@@ -48,27 +50,31 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         this.setTitle("Sélection du jeu" );
         this.setLayout(new BorderLayout());
         this.setResizable(false);
+        this.setSize(630, 520);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         this.choixJeu = new JList<>(LanceurGraphique.TYPE_JEU);
         
-        this.panelBtn   = new JPanel    (         );
-        this.btnValider = new JButton   ("Valider");
-        this.labImage   = new JLabel    (         );
-        this.tfJ1       = new JTextField(         );
-        this.tfJ2       = new JTextField(         );
+        this.panelBtn   = new JPanel (         );
+        this.btnValider = new JButton("Valider");
         
-        // ajout du bouton à son panel
+        this.labImage  = new JLabel    ();
+        this.msgErreur = new JLabel    ();
+        this.tfJ1      = new JTextField();
+        this.tfJ2      = new JTextField();
         
+        // panel contenant la saisie des noms de joueurs ainsi que le bouton valider
         this.panelBtn.setLayout(new BorderLayout());
         
-        JPanel panelTf = new JPanel(new GridLayout(2,4));
+        JPanel panelTf = new JPanel(new GridLayout(3,4));
         
         panelTf.add(new JLabel("Joueur 1: "));
         panelTf.add(this.tfJ1);
         
         panelTf.add(new JLabel("Joueur 2: "));
         panelTf.add(this.tfJ2);
+        
+        panelTf.add(this.msgErreur);
         
         this.panelBtn.add(panelTf, BorderLayout.CENTER);
         this.panelBtn.add(this.btnValider, BorderLayout.SOUTH);
@@ -83,7 +89,8 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         this.add(this.panelBtn, BorderLayout.SOUTH);
         
         this.setImage("./kingLogo.jpg");
-        this.pack();
+        //this.pack();
+        //System.out.println(this.getWidth() +" "+ this.getHeight());
         this.setVisible(true);
     }
     
@@ -101,7 +108,16 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
     @Override
     public void actionPerformed(ActionEvent evt)
     {
-        
+        if(this.tfJ1.getText().equals("") || this.tfJ2.getText().equals(""))
+        {
+            this.msgErreur.setForeground(Color.RED);
+            this.msgErreur.setText("ERREUR: veuillez saisir les noms des deux joueurs");
+        }
+        else
+        {
+            this.msgErreur.setText("");
+            System.out.println("ok");
+        }
     }
 
 
