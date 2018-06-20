@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projet_tut_2018.Santorini.ihm;
+package Santorini.ihm;
 
 import javax.swing.*;
 import java.awt.*;

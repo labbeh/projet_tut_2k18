@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projet_tut_2018.Santorini.ihm;
+package Santorini.ihm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +31,8 @@ public class IHMGui extends JFrame
         this.pack();
         this.setVisible(true);
     }
-    
+    public PanelPlateau getPlateau(){return this.plateau;}
+    public PanelInfos   getInfo()   {return this.infos;}
     public void setImage     (String url, int posLig, int posCol){this.plateau.setImage(url, posLig, posCol);}
     public void changerJoueur(int numJoueur                     ){this.infos.changerJoueur(numJoueur)       ;}
     
