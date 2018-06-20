@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Lechanoine,Levallois,Beaumont,Lebosse,Labbe,Dupont
+ * @date 20/06/2018
+ * @version 1.0
  */
 package Santorini.ihm;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
- * @author labbeh
- */
+
 public class PanelInfos extends JPanel
 {
     private static final String JOUEUR1 = "Joueur 1";
@@ -20,6 +17,9 @@ public class PanelInfos extends JPanel
     private JLabel lbJoueur1;
     private JLabel lbJoueur2;
     
+    /**
+     * Permet l'affichage du nom des joueurs en haut de la fenêtre
+     */
     public PanelInfos()
     {
         this.setLayout(new BorderLayout());
@@ -34,6 +34,10 @@ public class PanelInfos extends JPanel
         this.add(this.lbJoueur2, BorderLayout.EAST);
     }
     
+    /**
+     * Permet de mettre en évidence (avec une couleur) le joueur qui doit jouer
+     * @param numJoueur numéro du joueur à mettre en évidence
+     */
     public void changerJoueur(int numJoueur)
     {
         if(numJoueur == 1)

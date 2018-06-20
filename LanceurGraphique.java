@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Lechanoine,Levallois,Beaumont,Lebosse,Labbe,Dupont
+ * @date 20/06/2018
+ * @version 1.0
  */
+
 //package projet_tut_2018;
 
 import java.awt.BorderLayout;
@@ -24,10 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- *
- * @author labbeh
- */
+
 public class LanceurGraphique extends JFrame implements ActionListener, ListSelectionListener
 {
     private static final String[] TYPE_JEU = new String[]{"Kingdomino", "Santorini"};
@@ -45,6 +43,9 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
     
     private JButton btnValider;
     
+    /**
+     * Fenêtre de lancement qui permet à l'utilisateur de choisir le jeu ainsi que de saisir le nom des deux joueurs
+     */
     public LanceurGraphique()
     {
         this.setTitle("Sélection du jeu" );
@@ -94,6 +95,10 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         this.setVisible(true);
     }
     
+    /**
+     * Permet l'affichage d'image suivant le jeu sélectionné 
+     * @param urlImage location de l'image
+     */
     private void setImage(String urlImage)
     {
         ImageIcon image = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(urlImage)));
@@ -105,6 +110,10 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         LanceurGraphique lg = new LanceurGraphique();
     }
 
+    /**
+     * Permet de récupérer le nom des deux joueurs 
+     * @param evt Evénement du actionListener
+     */
     @Override
     public void actionPerformed(ActionEvent evt)
     {
@@ -125,7 +134,10 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         }
     }
 
-
+    /**
+     * Permet de savoir le jeu sélectionné par l'utilisateur 
+     * @param evt Evénement du actionListenerEvénement
+     */
     @Override
     public void valueChanged(ListSelectionEvent evt)
     {
