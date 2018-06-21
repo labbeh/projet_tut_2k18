@@ -1,4 +1,5 @@
 package projet_tut_2018.kingdomino.metier;
+
 /**
  * Class Mine
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -10,7 +11,7 @@ package projet_tut_2018.kingdomino.metier;
 public class Mine extends Biome
 {
 	//public static final String COULEUR = "Mine (Noir)";
-	public static final String COULEUR = "M ";
+	public static final String IMAGE = "mine";
 	public Mine(int point){super(point);}
-	public String getCouleur(){return Mine.COULEUR;}
+	public String getImage(){return Mine.IMAGE;}
 }

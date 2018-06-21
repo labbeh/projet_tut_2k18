@@ -1,4 +1,5 @@
 package projet_tut_2018.kingdomino.metier;
+
 /**
  * Class Pioche
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -64,7 +65,7 @@ public class Pioche
 					biomeG = new Lac(pointG);
 					break;
 				case 'D':
-					biomeG = new Desert(pointG);
+					biomeG = new Marais(pointG);
 					break;
 				case 'P':
 					biomeG = new Prairie(pointG);
@@ -85,7 +86,7 @@ public class Pioche
 					biomeD = new Lac(pointD);
 					break;
 				case 'D':
-					biomeD = new Desert(pointD);
+					biomeD = new Marais(pointD);
 					break;
 				case 'P':
 					biomeD = new Prairie(pointD);

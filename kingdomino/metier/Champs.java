@@ -11,7 +11,7 @@ package projet_tut_2018.kingdomino.metier;
 public class Champs extends Biome
 {
 	//public static final String COULEUR = "Champs (Jaune)";
-	public static final String COULEUR = "C ";
+	public static final String IMAGE = "champs";
 	public Champs(int point){super(point);}
-	public String getCouleur(){return Champs.COULEUR;}
+	public String getImage(){return Champs.IMAGE;}
 }

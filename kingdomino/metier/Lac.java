@@ -1,4 +1,5 @@
 package projet_tut_2018.kingdomino.metier;
+
 /**
  * Class Lac
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -10,7 +11,7 @@ package projet_tut_2018.kingdomino.metier;
 public class Lac extends Biome
 {
 	//public static final String COULEUR = "Lac (Bleu)";
-	public static final String COULEUR = "L ";
+	public static final String IMAGE = "lac";
 	public Lac(int point){super(point);}
-	public String getCouleur(){return Lac.COULEUR;}
+	public String getImage(){return Lac.IMAGE;}
 }

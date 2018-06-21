@@ -1,4 +1,5 @@
 package projet_tut_2018.kingdomino.metier;
+
 /**
  * Class Joueur
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -15,6 +16,7 @@ public class Joueur
 	private Plateau plateau;
 	private String  nom;
 	private Roi[]   tabRoi;
+	private int	nbRoi = 0;
 
 /**
  *Constructeur de Joueur 
@@ -32,8 +34,7 @@ public class Joueur
 		this.nom      = nom;
 
 		this.tabRoi    = new Roi[2];
-		this.tabRoi[0] = new Roi(this);
-		this.tabRoi[1] = new Roi(this);
+
 	}
 
 /**
@@ -46,7 +47,13 @@ public class Joueur
 	{
 		this.plateau = plateau;
 	}
-
+	public Roi     creerRoi()	{return this.tabRoi[this.nbRoi++] = new Roi(this);}
+	public void    resetRoi()   
+	{
+		this.tabRoi[0] = null;
+		this.tabRoi[1] = null;
+		this.nbRoi = 0;
+	}
 	public String  getCouleur() {return this.couleur;}
 	public int     getNbDomino(){return this.nbDomino;}
 	public Plateau getPlateau() {return this.plateau;}

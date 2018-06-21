@@ -1,5 +1,4 @@
 package projet_tut_2018.kingdomino.metier;
-
 /**
  * Class Domino
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -62,7 +61,7 @@ public class Domino
 		if ( this.numDomino == 0)
 			return "tuileDepart.gif";
 		else
-			return "tuile" + String.format("%02d", this.numDomino);
+			return "tuile" + String.format("%2d");
 	}
 
 

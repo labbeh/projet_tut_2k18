@@ -1,4 +1,5 @@
 package projet_tut_2018.kingdomino.metier;
+
 /**
  * Class Prairie
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -10,7 +11,7 @@ package projet_tut_2018.kingdomino.metier;
 public class Prairie extends Biome
 {
 	//public static final String COULEUR = "Prairie (Vert)";
-	public static final String COULEUR = "P ";
+	public static final String IMAGE = "prairie";
 	public Prairie(int point){super(point);}
-	public String getCouleur(){return Prairie.COULEUR;}
+	public String getImage(){return Prairie.IMAGE;}
 }
