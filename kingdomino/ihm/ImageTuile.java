@@ -5,6 +5,8 @@
  */
 package projet_tut_2018.kingdomino.ihm;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.*;
 import java.awt.image.*;
 import javax.imageio.ImageIO;
@@ -26,9 +28,10 @@ public class ImageTuile
         this.posY = 0   ;
     }
     
-    public BufferedImage getImage()
+    public Image getImage()
     {
-        BufferedImage bffImgRet;
+        Image imgRet = Toolkit.getDefaultToolkit().getImage( "imgs/tuileDepart.gif" );
+        /*BufferedImage bffImgRet;
         try
         {
             bffImgRet = ImageIO.read(new File("imgs/" +this.nom));
@@ -37,8 +40,8 @@ public class ImageTuile
         {
             bffImgRet = null;
             e.printStackTrace();
-        }
-        return bffImgRet;
+        }*/
+        return imgRet;
     }
     
     // MODIFICATEURS
