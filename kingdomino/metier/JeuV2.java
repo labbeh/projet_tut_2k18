@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Jeu
+public class JeuV2
 {
 
 	private ArrayList<Domino>  tuilePiochee;
@@ -26,7 +26,7 @@ public class Jeu
 
 	private int      joueurCourant;
 
-	public Jeu()
+	public JeuV2()
 	{
 		this.pioche = new Pioche();
 
@@ -45,7 +45,7 @@ public class Jeu
  *@
 */
 
-	public void jouer()
+	/*public void jouer()
 	{
 		this.tuilePiochee = new ArrayList<Domino>();
 
@@ -87,7 +87,7 @@ public class Jeu
 
 
 		}
-	}
+	}*/
 
 	public void initManche()
 	{
@@ -181,14 +181,5 @@ public class Jeu
 
 		}
 		return true;
-	}
-
-	public static void main (String[]a)
-	{
-		Jeu j = new Jeu();
-		j.jouer();
-		System.out.println("mon sac est fait");
-
-
 	}
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class Plateau
+public class PlateauV2
 {
 	private Biome[][]          tabJeu;
 	private ArrayList<Domino>  tuileJouees;
@@ -25,7 +25,7 @@ public class Plateau
  *@param tabJeu        : tableau de caractère servant à l'affichage CUI 
  */
 
-	public Plateau()
+	public PlateauV2()
 	{
 
 		this.tuileJouees  = new ArrayList<Domino>();

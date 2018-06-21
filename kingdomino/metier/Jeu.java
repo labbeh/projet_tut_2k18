@@ -45,7 +45,7 @@ public class Jeu
  *@
 */
 
-	public void jouer(String nomJ1, String nomJ2)
+	/*public void jouer(String nomJ1, String nomJ2)
 	{
 		this.tuilePiochee = new ArrayList<Domino>();
 
@@ -78,7 +78,7 @@ public class Jeu
 		{
 			this.initManche();
 		}
-	}
+	}*/
 
 	public void initManche()
 	{
