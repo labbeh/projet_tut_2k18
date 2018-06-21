@@ -11,8 +11,8 @@ import java.awt.*;
 
 public class PanelInfos extends JPanel
 {
-    private static final String JOUEUR1 = "Joueur 1";
-    private static final String JOUEUR2 = "Joueur 2";
+    private static String JOUEUR1 = "Joueur 1";
+    private static String JOUEUR2 = "Joueur 2";
     
     private JLabel lbJoueur1;
     private JLabel lbJoueur2;
@@ -20,8 +20,11 @@ public class PanelInfos extends JPanel
     /**
      * Permet l'affichage du nom des joueurs en haut de la fenêtre
      */
-    public PanelInfos()
+    public PanelInfos(String nomJ1, String nomJ2)
     {
+        PanelInfos.JOUEUR1 = nomJ1;
+        PanelInfos.JOUEUR2 = nomJ2;
+                
         this.setLayout(new BorderLayout());
         
         this.lbJoueur1 = new JLabel();
@@ -33,7 +36,6 @@ public class PanelInfos extends JPanel
         this.add(this.lbJoueur1, BorderLayout.WEST);
         this.add(this.lbJoueur2, BorderLayout.EAST);
     }
-    
     /**
      * Permet de mettre en évidence (avec une couleur) le joueur qui doit jouer
      * @param numJoueur numéro du joueur à mettre en évidence

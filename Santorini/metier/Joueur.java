@@ -5,6 +5,8 @@
  */
 package Santorini.metier;
 
+import java.util.ArrayList;
+
 public class Joueur 
 {
     /*-------------------*/
@@ -12,7 +14,7 @@ public class Joueur
     /*-------------------*/
 
     private final int NB_BATISSEUR = 2 ;
-    private static final String[] ENSCOULEUR = new String[]{"Bleu" , "Blanc" , "Gris"};
+    private static final String[] ENSCOULEUR = new String[]{"Bleu" , "Gris", "Blanc"};
     private static int NBJOUEUR = 0;
 
     
@@ -72,10 +74,39 @@ public class Joueur
      * @param direction la direction de deplacement
      * @return si le deplacement a reussi
      */
-    public boolean deplacement(int numeroBatisseur, String direction)
+    
+    public boolean deplacement(int numeroBatisseur ,String direction)
     {
-        return this.ensBatisseur[numeroBatisseur - 1].deplacement(direction);
+        boolean reussite = false; 
+        int tmpLigne     = this.ensBatisseur[numeroBatisseur - 1].getLigne();            //creation de valeur temporaire pour les test
+        int tmpColonne   = this.ensBatisseur[numeroBatisseur - 1].getColonne();
         
+        
+        switch (direction)                            //chagement des valeur par rapport au choix du joueur
+        {
+            case "N"  : tmpLigne   --; 
+                break;
+            case "NE" : tmpLigne   --;
+                        tmpColonne ++;
+                break;
+            case "NO" : tmpLigne   --;
+                        tmpColonne --;
+                break;
+            case "E"  : tmpColonne ++;
+                break;
+            case "O"  : tmpColonne --;
+                break;
+            case "S"  : tmpLigne   ++;
+                break;
+            case "SE" : tmpLigne   ++;
+                        tmpColonne ++;
+                break;
+            case "SO" : tmpLigne   ++;
+                        tmpColonne --;
+                break;
+        }
+        this.ensBatisseur[numeroBatisseur - 1].setDeplacement(true);
+        return this.ensBatisseur[numeroBatisseur - 1].setPos(tmpLigne, tmpColonne);
     }
     
     /*-------------------*/

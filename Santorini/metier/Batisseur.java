@@ -5,6 +5,8 @@
  */
 package Santorini.metier;
 
+import java.util.ArrayList;
+
 public class Batisseur {
     
     /*-------------------*/
@@ -54,6 +56,7 @@ public class Batisseur {
         int tmpLigne     = this.posLigne;            //creation de valeur temporaire pour les test
         int tmpColonne   = this.posColonne;
         
+        
         switch (direction)                            //chagement des valeur par rapport au choix du joueur
         {
             case "N"  : tmpLigne   --; 
@@ -77,23 +80,10 @@ public class Batisseur {
                         tmpColonne --;
                 break;
         }
-        boolean montee = false;
-        
-        if(tmpLigne >= 0 && tmpLigne <= 4 && tmpColonne >= 0 && tmpColonne <= 4)                    //test pour que les cordonné soit dans la grille
-        {
-            if(plateau.getHauteur(tmpLigne, tmpColonne) - plateau.getHauteur(this.posLigne, this.posColonne) <=  1 && 
-               plateau.getHauteur(tmpLigne, tmpColonne) != 4 ){}// test si la case visée est a la meme hauteur ou juste un niveau suppérieur
-            else if(plateau.getHauteur(tmpLigne, tmpColonne) < plateau.getHauteur(this.posLigne, this.posColonne)){}
-            else
-            {
-                tmpLigne = -1;              //donne des valeur impossible car la montée etait impossible
-                tmpColonne = -1;
-            }
-        }
-        this.depla = true;
         
         return setPos(tmpLigne, tmpColonne);
     }
+    public void setDeplacement(boolean depla){this.depla = depla;}
     /**
      * permet de tester si la position est disponible et si oui affecte le batiseur sur la position
      * @param tmpLigne est la ligne de la position a tester
@@ -127,7 +117,7 @@ public class Batisseur {
             
             Batisseur.grilleBat[this.posLigne][this.posColonne] = this.id;
         }
-        
+        this.depla = false;
         return reussite;
     }
    
@@ -150,6 +140,8 @@ public class Batisseur {
      * @return la hauteur du Batisseur
      */
     public int getPos    () {return (this.posLigne * 10) + this.posColonne;}
+    
+    public String getId  () {return this.id;}
     
 }
 

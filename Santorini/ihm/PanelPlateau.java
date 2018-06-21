@@ -9,7 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import Santorini.Controleur;
+import Santorini.metier.Batisseur;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
 public class PanelPlateau extends JPanel implements ActionListener
@@ -19,12 +22,15 @@ public class PanelPlateau extends JPanel implements ActionListener
     private Controleur ctrl;
     private static final int NB_CASES = 5;
     private BoutonCase[][] cases;
+    private IHMGui fenetre;
+    private Batisseur batActuel;
     
     /**
      * Permet de créer le plateau de boutons 
      * @param ctrl 
+     * @param IHMGui pour avoir acces
      */
-    public PanelPlateau(Controleur ctrl)
+    public PanelPlateau(Controleur ctrl, IHMGui fenetre)
     {
         this.ctrl = ctrl;
         this.setLayout(new GridLayout(PanelPlateau.NB_CASES,PanelPlateau.NB_CASES));
@@ -34,8 +40,11 @@ public class PanelPlateau extends JPanel implements ActionListener
         for(int cptLig=0; cptLig<this.cases.length; cptLig++)
             for(int cptCol=0; cptCol<this.cases.length; cptCol++)
             {
-                this.cases[cptLig][cptCol] = new BoutonCase(cptLig,cptCol);
-                this.add(this.cases[cptLig][cptCol]);
+                this.cases[cptLig][cptCol] = new BoutonCase(cptLig,cptCol,"fond_1.png");
+                this.cases[cptLig][cptCol].setPreferredSize(new Dimension(20,20));
+                
+                this.add(cases[cptLig][cptCol]);
+                testSouris(this.cases[cptLig][cptCol]);
                 this.cases[cptLig][cptCol].addActionListener(this);
             }
     }
@@ -56,7 +65,7 @@ public class PanelPlateau extends JPanel implements ActionListener
      */
     public void setImage(String url, int posLig, int posCol)
     {
-        this.cases[posLig][posCol].setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource(url))));
+        this.cases[posLig][posCol].setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("image/" + url))));
     }
     
     /**
@@ -66,30 +75,79 @@ public class PanelPlateau extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent evt)
     {
         BoutonCase btn = (BoutonCase)evt.getSource();
+        boolean constru = false;
+        String depla = null;
+        if(this.phase % 3 > 0) depla = ctrl.getDeplacement(btn.getPosLig(), btn.getPosCol(), this.batActuel);
         
-        if (this.phase < 0)
+        if(this.phase % 3 == 2)
         {
-            if(ctrl.initBatisseur(batisseur, btn.getPosLig(), btn.getPosCol()));
-                btn.setText( "" + batisseur);
-            if(this.phase < -1)System.out.println( "\nJoueur ou voulez-vous placer votre batisseur ?");
-            this.phase++;
-            this.batisseur++;
-            
-        }
-        if (this.phase % 3 == 0 && this.phase >= 0)
-        {
-            ctrl.ChoixBat(btn.getPosLig(), btn.getPosCol());
-            this.phase++;
+            if(ctrl.construction(btn.getPosLig(), btn.getPosCol(), this.batActuel, depla))
+            {
+                this.phase++;
+                constru = true;
+            }
         }
         if(this.phase % 3 == 1)
         {
-            ctrl.deplacement(btn.getPosLig(), btn.getPosCol());
-            this.phase++;
+            if(ctrl.deplacement(btn.getPosLig(), btn.getPosCol(), this.batActuel, depla))
+            {
+                this.phase++;
+            }
         }
-        if(this.phase % 3 == 2)
+        if (this.phase % 3 == 0 && this.phase >= 0 && !constru)
         {
-            ctrl.construction(btn.getPosLig(), btn.getPosCol());
-            this.phase++;
+            this.batActuel = ctrl.ChoixBat(btn.getPosLig(), btn.getPosCol());
+            if(this.batActuel != null)
+            {
+                this.phase++;
+            }
         }
+        if(this.phase < 0)
+        {
+            Batisseur bati = ctrl.initBatisseur(this.batisseur, btn.getPosLig(), btn.getPosCol());
+            
+            if(bati != null)
+            {
+                this.phase++;
+                this.batisseur++;
+                btn.setText(bati.getId());
+            }
+            int joueur = this.batisseur - 1;
+            if(joueur == 2 ) joueur --;
+            if(this.phase <= -1)System.out.println( "\n" + ctrl.getJoueur(joueur) + " ou voulez-vous placer votre batisseur n°" + (this.batisseur % 2 + 1) + " ?");
+        }
+        if(ctrl.aGagne() != null)
+        {
+            FrameVictoire plateau = new FrameVictoire(ctrl.aGagne().getNom());
+            fenetre.dispose();
+        }
+    }
+
+    
+    public void testSouris(BoutonCase bouton){
+        bouton.addMouseListener(new MouseListener() {
+
+            public void mouseClicked(MouseEvent e){}
+
+            
+            public void mousePressed(MouseEvent e){}
+
+            
+            public void mouseReleased(MouseEvent e){}
+
+            
+            public void mouseEntered(MouseEvent e){
+                
+                bouton.setBorder(BorderFactory.createLineBorder(Color.RED));
+                bouton.setBorderPainted(true);
+            }
+
+            
+            public void mouseExited(MouseEvent e)
+            {
+                 bouton.setBorderPainted(false);
+            }
+
+        });
     }
 }

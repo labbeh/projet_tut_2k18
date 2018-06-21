@@ -174,10 +174,11 @@ public class Santorini
                 
                 if( (choixBatisseur == 1 || choixBatisseur == 2) && correcte) 
                 {
-                    if( grilleJeu.estBloqueUnitaire(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)) )
+                    if( grilleJeu.deplacementDispo(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)).size() == 0 )
                         System.out.println("Le batisseur "+ choixBatisseur +" est bloque ! Veuillez selectionner l'autre !");
                     else
                         choixBatValide = true;
+                        System.out.println(grilleJeu.deplacementDispo(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)).size());
                 }
                 
                 if( !choixBatValide ) System.out.print("Veuillez selectionner le batisseur 1 ou 2 ! :  ");
@@ -193,16 +194,19 @@ public class Santorini
             
             clavier.nextLine();
             System.out.println();
-            System.out.print(tourJoueur +",ou souhaitez vous déplacer votre batisseur (N,S,E,O,NE,SO,..) ? :  ");         
+            System.out.print(tourJoueur +",ou souhaitez vous déplacer votre batisseur ?  ");
+            int nbDeplDispo = grilleJeu.deplacementDispo(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)).size();
+            System.out.print("Les deplacement possibles sont : ");
+            System.out.println(grilleJeu.deplacementDispo(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)).subList(0, nbDeplDispo));
             
             choixDepValide = false;
             do                                                                                                              // Verification de la validite du choix
             {
                 choixDeplacement = clavier.nextLine().toUpperCase();
                 
-                if( choixDeplacement.equals("N") || choixDeplacement.equals("S") || choixDeplacement.equals("E") || choixDeplacement.equals("O") ||
-                    choixDeplacement.equals("NE") || choixDeplacement.equals("NO") || choixDeplacement.equals("SE") || choixDeplacement.equals("SO")) 
-                    if( grilleJeu.getJoueur(nbTour%2).deplacement(choixBatisseur, choixDeplacement) ) choixDepValide = true;
+                if( grilleJeu.deplacementDispo(grilleJeu.getJoueur(nbTour%2).getBatisseur(choixBatisseur)).contains(choixDeplacement)) 
+                    if( grilleJeu.getJoueur(nbTour%2).deplacement(choixBatisseur, choixDeplacement))
+                        choixDepValide = true;
                     
                 
                 if( !choixDepValide ) System.out.print("Veuillez choisir un deplacement possible ! :  ");

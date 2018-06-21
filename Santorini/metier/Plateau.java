@@ -6,6 +6,7 @@
 package Santorini.metier;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Plateau 
 {
@@ -101,90 +102,89 @@ public class Plateau
         
         return resultat;
     }
+    
+    public ArrayList<String> deplacementDispo(Batisseur batisseur)
+    {
+        String grilleBat[][]  = this.ensJoueur[1].getBatisseur(2).grilleBat;
+        
+        ArrayList<String> aDepl = new ArrayList<String>();
+        
+        int colonne =  batisseur.getColonne();
+        int ligne =  batisseur.getLigne();
+        int hauteur =  this.grilleJeu[ligne][colonne];
+        
+        String direction = "";    
+        
+        for (int cptLigne = (ligne-1); cptLigne <= (ligne+1); cptLigne++)
+            for (int cptColonne = (colonne-1); cptColonne <= (colonne+1); cptColonne++)
+                try
+                {
+                    if(this.grilleJeu[cptLigne][cptColonne] - hauteur <= 1 && hauteur < 4 && grilleBat[cptLigne][cptColonne] == null)
+                    {
+                        switch( ligne - cptLigne )
+                        {
+                            case -1 : direction += "N";
+                                     break;
+                            case 1  : direction += "S";
+                                     break;
+                        }
+                        switch( colonne - cptColonne)
+                        {
+                            case -1 : direction += "O";
+                                     break;
+                            case 1  : direction += "E";
+                                     break;
+                        }
+                        if( direction != "")
+                            aDepl.add(direction);  
+                        direction = "";
+                    }
+                }catch(ArrayIndexOutOfBoundsException evt){}
+        
+        return aDepl;
+    } 
+        
+    
+    
     /**
      * Test si le Batisseur chosie est bloque
      * @param batisseur le batissuer choisie
      * @return vrai si le Batisseur est bloque
      */
-    public boolean estBloqueUnitaire(Batisseur batisseur)
+    /*public boolean estBloqueUnitaire(Batisseur batisseur)
     {
-        int hauteur =  this.grilleJeu[batisseur.getLigne()][batisseur.getColonne()];
-        String grilleBat[][]  = this.ensJoueur[0].getBatisseur(1).grilleBat;
+        String grilleBat[][]  = this.ensJoueur[1].getBatisseur(2).grilleBat;
         int ligne =  batisseur.getLigne();
         int colonne =  batisseur.getColonne();
+        int hauteur =  this.grilleJeu[ligne][colonne];
         int sortiePossible = 0;
             
-        if (ligne  != 0 && colonne != 0 && ligne != 4 && colonne != 4)
+        
+        for (int cptLigne = (ligne-1); cptLigne <= (ligne+1); cptLigne++)
         {
-            for (int cptLigne = -1; cptLigne < 1; cptLigne++)
-                for (int cptColonne = -1; cptColonne < 1; cptColonne++)
-                    if(this.grilleJeu[ligne + cptLigne][colonne + cptColonne] - hauteur <= 1 && grilleBat[ligne + cptLigne][colonne + cptColonne] == null)
+            for (int cptColonne = (colonne-1); cptColonne <= (colonne+1); cptColonne++)
+            {
+                try{
+                    if(this.grilleJeu[cptLigne][cptColonne] - hauteur <= 1 && grilleBat[cptLigne][cptColonne] == null)
+                    {
                         sortiePossible ++;
-        }    
-        else if(ligne == 0 && colonne == 0)
-        {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null) sortiePossible++; 
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null) sortiePossible++; 
-            if(this.grilleJeu[ligne + 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne  + 1][colonne + 1] == null) sortiePossible++;
+                    }
+                }catch(ArrayIndexOutOfBoundsException evt){}
+            }
         }
-        else if(ligne == 4 && colonne == 0)
-        {
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null) sortiePossible++;
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null) sortiePossible++;
-            if(this.grilleJeu[ligne - 1][colonne + 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne + 1] == null) sortiePossible++;
-        }
-        else if(ligne == 0 && colonne == 4)
-        {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null) sortiePossible++;
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null) sortiePossible++;
-            if(this.grilleJeu[ligne + 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne + 1][colonne - 1] == null) sortiePossible++;
-        }
-        else if(ligne == 4 && colonne == 4)
-        {
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null) sortiePossible++;
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null) sortiePossible++;
-            if(this.grilleJeu[ligne - 1][colonne - 1] - hauteur <= 1 && grilleBat[ligne - 1][colonne - 1] == null) sortiePossible++;
-        }
-        else if(ligne == 0 || ligne == 4)
-        {
-            if(this.grilleJeu[ligne][colonne + 1] - hauteur <= 1 && grilleBat[ligne][colonne + 1] == null) sortiePossible++;
-            if(this.grilleJeu[ligne][colonne - 1] - hauteur <= 1 && grilleBat[ligne][colonne - 1] == null) sortiePossible++;
-            
-            if(ligne == 0)
-                for (int cptColonne = -1; cptColonne < 1; cptColonne++)
-                    if(this.grilleJeu[0][colonne + cptColonne] - hauteur <= 1 && grilleBat[0][colonne + cptColonne] == null) sortiePossible++;
-                
-            if(ligne == 4)
-                for (int cptColonne = -1; cptColonne < 1; cptColonne++)
-                    if(this.grilleJeu[4][colonne + cptColonne] - hauteur <= 1 && grilleBat[4][colonne + cptColonne] == null) sortiePossible++;
-            
-        }
-        else if(colonne == 0 || colonne == 4)
-        {
-            if(this.grilleJeu[ligne + 1][colonne] - hauteur <= 1 && grilleBat[ligne + 1][colonne] == null) sortiePossible++;
-            if(this.grilleJeu[ligne - 1][colonne] - hauteur <= 1 && grilleBat[ligne - 1][colonne] == null) sortiePossible++;
-            
-            if(colonne == 0)
-                for (int cptLigne = -1; cptLigne < 1; cptLigne++)
-                    if(this.grilleJeu[ligne + cptLigne][0] - hauteur <= 1 && grilleBat[ligne + cptLigne][0] == null) sortiePossible++;
-            
-            if(colonne == 4)
-                for (int cptLigne = -1; cptLigne < 1; cptLigne++)
-                    if(this.grilleJeu[ligne + cptLigne][4] - hauteur <= 1 && grilleBat[ligne + cptLigne][4] == null) sortiePossible++;
-            
-        }
+        
         if(sortiePossible >= 1) return false;
         return true;
-    }
+    }*/
     /**
-     * Test si un des joueur est totalement bloquer
-     * @return Le joueur bloquer
+     * Test si un des joueur est totalement bloquer et donc si un joueur a gagne
+     * @return Le joueur non bloquer/Gagnagnt
      */
     public Joueur estBloque()
     {
-        if(estBloqueUnitaire(this.ensJoueur[0].getBatisseur(1)) && estBloqueUnitaire(this.ensJoueur[0].getBatisseur(2))) return this.ensJoueur[0];
+        if(deplacementDispo(this.ensJoueur[0].getBatisseur(1)).size() == 0 && deplacementDispo(this.ensJoueur[0].getBatisseur(2)).size() == 0) return this.ensJoueur[1];
         
-        if(estBloqueUnitaire(this.ensJoueur[1].getBatisseur(1)) && estBloqueUnitaire(this.ensJoueur[1].getBatisseur(2))) return this.ensJoueur[1];
+        if(deplacementDispo(this.ensJoueur[1].getBatisseur(1)).size() == 0 && deplacementDispo(this.ensJoueur[1].getBatisseur(2)).size() == 0) return this.ensJoueur[0];
         
         return null;        
     }
