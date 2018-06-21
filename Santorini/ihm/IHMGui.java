@@ -25,7 +25,7 @@ public class IHMGui extends JFrame
         this.ctrl = ctrl;
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 1000);
+        this.setSize(1000, 1050);
         this.setResizable(false);
         
         this.plateau = new PanelPlateau(this.ctrl, this);

@@ -24,6 +24,7 @@ public class PanelPlateau extends JPanel implements ActionListener
     private BoutonCase[][] cases;
     private IHMGui fenetre;
     private Batisseur batActuel;
+    private static BoutonCase btnMemoire;
     
     /**
      * Permet de créer le plateau de boutons 
@@ -40,7 +41,9 @@ public class PanelPlateau extends JPanel implements ActionListener
         for(int cptLig=0; cptLig<this.cases.length; cptLig++)
             for(int cptCol=0; cptCol<this.cases.length; cptCol++)
             {
-                this.cases[cptLig][cptCol] = new BoutonCase(cptLig,cptCol,"fond_1.png");
+                String image = "image/fond_" + (int)((Math.random() * (3-0)) + 1) + ".png";
+                System.out.println(image);
+                this.cases[cptLig][cptCol] = new BoutonCase(cptLig,cptCol,image);
                 this.cases[cptLig][cptCol].setPreferredSize(new Dimension(20,20));
                 
                 this.add(cases[cptLig][cptCol]);
@@ -48,7 +51,6 @@ public class PanelPlateau extends JPanel implements ActionListener
                 this.cases[cptLig][cptCol].addActionListener(this);
             }
     }
-    
     /**
      * 
      * @param posLig
@@ -85,6 +87,7 @@ public class PanelPlateau extends JPanel implements ActionListener
             {
                 this.phase++;
                 constru = true;
+                btn.etageSupp();
             }
         }
         if(this.phase % 3 == 1)
@@ -92,6 +95,8 @@ public class PanelPlateau extends JPanel implements ActionListener
             if(ctrl.deplacement(btn.getPosLig(), btn.getPosCol(), this.batActuel, depla))
             {
                 this.phase++;
+                PanelPlateau.btnMemoire.setText(null);
+                btn.setText(this.batActuel.getId());
             }
         }
         if (this.phase % 3 == 0 && this.phase >= 0 && !constru)
@@ -100,6 +105,7 @@ public class PanelPlateau extends JPanel implements ActionListener
             if(this.batActuel != null)
             {
                 this.phase++;
+                PanelPlateau.btnMemoire = btn;
             }
         }
         if(this.phase < 0)

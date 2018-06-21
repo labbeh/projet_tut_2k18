@@ -17,12 +17,13 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Hugo
+ * @author 
  */
 public class BoutonCase extends JButton
 {
     private int posLig;
     private int posCol;
+    private int hauteur = 0;
     
     /**
      * Creer un bouton et prend sa position
@@ -42,7 +43,7 @@ public class BoutonCase extends JButton
         this.posLig = posLig;
         this.posCol = posCol;
     }
-    
+    public void etageSupp(){this.hauteur ++;}
     /**
      * Accesseur Ligne
      * @return La ligne du bouton
