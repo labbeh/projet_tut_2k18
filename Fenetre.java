@@ -13,11 +13,13 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
  */
 public abstract class Fenetre extends JFrame
 {
-    public Fenetre()
+    public Fenetre(String title)
     {
+        this.setTitle(title);
         this.setLocation(100,100     );
         this.setSize    (820,700     );
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
             
         if(System.getProperty("os.name").equals("Mac OS X"))
         {
