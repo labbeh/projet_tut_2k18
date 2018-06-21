@@ -61,7 +61,7 @@ public class Domino
 		if ( this.numDomino == 0)
 			return "tuileDepart.gif";
 		else
-			return "tuile" + String.format("%2d", this.numDomino);
+			return "tuile" + this.numDomino;
 	}
 
 	public void setSens()
