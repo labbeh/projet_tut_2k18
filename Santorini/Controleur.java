@@ -4,9 +4,10 @@
  * @version 1.0
  */
 
-package Santorini;
-import Santorini.metier.*;
-import Santorini.ihm.*;
+package projet_tut_2018.Santorini;
+
+import projet_tut_2018.Santorini.metier.*;
+import projet_tut_2018.Santorini.ihm.*;
 
 
 public class Controleur 
