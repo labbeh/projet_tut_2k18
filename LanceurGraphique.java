@@ -4,7 +4,7 @@
  * @version 1.0
  */
 
-//package projet_tut_2018;
+package projet_tut_2018;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -46,6 +46,8 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
     
     private JButton btnValider;
     private JButton btnRegle;
+    
+    
     
     /**
      * Fenêtre de lancement qui permet à l'utilisateur de choisir le jeu ainsi que de saisir le nom des deux joueurs
@@ -115,10 +117,6 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         this.labImage.setIcon(image);
     }
     
-    public static void main(String[] args)
-    {
-        LanceurGraphique lg = new LanceurGraphique();
-    }
 
     /**
      * Permet de récupérer le nom des deux joueurs 
@@ -162,13 +160,11 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
                 this.msgErreur.setText("");
                 this.setVisible(false);
                 if(this.choixJeu.getSelectedValue().equals(LanceurGraphique.TYPE_JEU[0]))
-                    new     kingdomino.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
+                    new     projet_tut_2018.kingdomino.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
                 else
-                    new Santorini.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
-
+                    new projet_tut_2018.Santorini.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
             }
         }
-        
     }
 
     /**
@@ -182,5 +178,11 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
             this.setImage("kingLogo.jpg");
         else
             this.setImage("santoLogo.jpg");
+    }
+    
+    // main de lancement
+    public static void main(String[] args)
+    {
+        LanceurGraphique lg = new LanceurGraphique();
     }
 }
