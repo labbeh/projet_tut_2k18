@@ -6,10 +6,6 @@
 package Santorini.ihm;
 
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -24,6 +20,8 @@ public class BoutonCase extends JButton
     private int posLig;
     private int posCol;
     private int hauteur = 0;
+    private String image;
+    private String imageBase;
     
     /**
      * Creer un bouton et prend sa position
@@ -33,9 +31,10 @@ public class BoutonCase extends JButton
     public BoutonCase(int posLig, int posCol, String image)
     {
         super();
-        
+        this.image = image;
+        this.imageBase = image;
         try {
-            Image img = ImageIO.read(getClass().getResource(image));
+            Image img = ImageIO.read(getClass().getResource("image/" + image + ".png"));
             this.setIcon(new ImageIcon(img));
         } catch (Exception ex) {}
          
@@ -43,7 +42,38 @@ public class BoutonCase extends JButton
         this.posLig = posLig;
         this.posCol = posCol;
     }
-    public void etageSupp(){this.hauteur ++;}
+    public void etageSupp()
+    {
+        this.hauteur ++;
+        this.image = "etage_" + this.hauteur;
+        this.imageBase = this.image;
+        setImage();
+    }
+    public void etageInf()
+    {
+        this.hauteur --;
+        this.image = "etage_" + this.hauteur;
+        this.imageBase = this.image;
+        setImage();
+    }
+    public void setPerso(String couleur)
+    {
+        String lowerCouleur =  String.valueOf(couleur.charAt(0)).toLowerCase();
+        this.image = this.image + "_p_" + lowerCouleur;
+        setImage();
+    }
+    public void imageBase()
+    {
+        this.image = this.imageBase;
+        setImage();
+    }
+    public void setImage()
+    {
+        try {
+            Image img = ImageIO.read(getClass().getResource("image/" + this.image + ".png"));
+            this.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {}
+    }
     /**
      * Accesseur Ligne
      * @return La ligne du bouton

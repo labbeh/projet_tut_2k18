@@ -47,7 +47,7 @@ public class Joueur
         for (int cpt = 0; cpt < 2; cpt++) 
         {
             String id = "" + this.couleur.charAt(0) + (cpt + 1);
-            ensBatisseur[cpt] = new Batisseur(id ,this.plateau);
+            ensBatisseur[cpt] = new Batisseur(id ,this.plateau, this);
             Joueur.compteurBatisseur++;  
         }
     }
@@ -128,7 +128,7 @@ public class Joueur
      * Accesseur Couleur
      * @return la couleur du joueur 
      */
-    public String getCouleur()      {return this.couleur;}
+    public String getCouleur(){return this.couleur;}
     /**
      * Accesseur nombre batisseur
      * @return Le nombre max de Batisseur

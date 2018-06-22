@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projet_tut_2018;
+//package projet_tut_2018;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
