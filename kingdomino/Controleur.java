@@ -22,7 +22,7 @@ public class Controleur
     private Domino[] tabDomino;
     
     private int      joueurCourant;
-    private Pioche     pioche;
+    private Pioche   pioche       ;
     
     public Controleur(String nomJ1, String nomJ2)
     {
