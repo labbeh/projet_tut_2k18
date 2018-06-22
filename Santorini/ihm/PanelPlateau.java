@@ -141,10 +141,7 @@ public class PanelPlateau extends JPanel implements ActionListener
             public void mouseClicked(MouseEvent e){}
 
             
-            public void mousePressed(MouseEvent e)
-            {
-                if(this.phase == 0){}
-            }
+            public void mousePressed(MouseEvent e){}
                 
             
             public void mouseReleased(MouseEvent e){}
