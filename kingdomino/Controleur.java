@@ -19,7 +19,7 @@ public class Controleur
     //private Jeu      jeu;
     
     private Joueur[] tabJoueur;
-    //private Domino[] tabDomino;
+    private Domino[] tabDomino;
     
     private int      joueurCourant;
     private Pioche     pioche;
@@ -28,10 +28,12 @@ public class Controleur
     {
         this.pioche = new Pioche();
         this.pioche.initPioche();
+        this.tabDomino = new Domino[4];
         
         this.tabJoueur     = new Joueur[]{ new Joueur(nomJ1, "rouge"), new Joueur(nomJ2, "bleu") };
         this.joueurCourant = 0;
         
+        this.initPioche();
         this.ihm = new IHMGuiV2(this);
     }
     
@@ -41,18 +43,40 @@ public class Controleur
     public int    getNumJoueurCourant    (){ return this.joueurCourant                             ; }
     public Joueur getJoueurCourant       (){ return this.tabJoueur[this.joueurCourant]             ; }
     
-    public String getNomImage(int num){ return this.pioche.piocher().getImage(); }
+    public void initPioche()
+    {
+        for(int cpt=0; cpt<this.tabDomino.length; cpt++)
+            this.tabDomino[cpt] = this.pioche.piocher();
+    }
+    public String getNomImage(int num)
+    {
+        return this.tabDomino[num].getImage();
+    }
     
     public void poserTuile()
     {
         int x = this.ihm.getPosX();
         int y = this.ihm.getPosY();
         
+        int indice = this.ihm.getDernierClique();
+        int nbCouronnes;
         
-        String biome = new String("Lac");
-        //System.out.println(this.getJoueurCourant().getPlateau().)
+        //Biome = 
+        String biome1 = this.tabDomino[indice].getBiome1().getImage();
+        String biome2 = this.tabDomino[indice].getBiome2().getImage();
         
-        this.ihm.poserTuile(biome, x, y);
+        if     (this.tabDomino[indice].getBiome1().getCouronne() == 1) biome1 += "1";
+        else if(this.tabDomino[indice].getBiome1().getCouronne() == 2) biome1 += "2";
+        else if(this.tabDomino[indice].getBiome1().getCouronne() == 3) biome1 += "3";
+        
+        if     (this.tabDomino[indice].getBiome2().getCouronne() == 1) biome2 += "1";
+        else if(this.tabDomino[indice].getBiome2().getCouronne() == 2) biome2 += "2";
+        else if(this.tabDomino[indice].getBiome2().getCouronne() == 3) biome2 += "3";
+        
+        
+        this.ihm.poserTuile(biome1, x, y);
+        this.ihm.poserTuile(biome2, x, y+50);
+        
         this.changerJoueur();
         
     }
@@ -70,11 +94,6 @@ public class Controleur
     public static void main(String[] args)
     {
         Controleur c = new Controleur("labbeh", "beaumontn");
-        System.out.println(c.getNomJoueurCourant());
         
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        sc.nextLine();
-        
-        c.changerJoueur();
     }
 }
