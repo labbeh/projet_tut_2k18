@@ -8,7 +8,6 @@ package projet_tut_2018.kingdomino;
 import projet_tut_2018.kingdomino.metier.*;
 import projet_tut_2018.kingdomino.ihm.*;
 
-import java.util.ArrayList;
 /**
  *
  * @author labbeh
@@ -68,18 +67,7 @@ public class Controleur
         //Biome = 
         String biome1 = this.tabDomino[indice].getBiome1().getImage();
         String biome2 = this.tabDomino[indice].getBiome2().getImage();
-        
-        /*if     (this.tabDomino[indice].getBiome1().getCouronne() == 1) biome1 += "1";
-        else if(this.tabDomino[indice].getBiome1().getCouronne() == 2) biome1 += "2";
-        else if(this.tabDomino[indice].getBiome1().getCouronne() == 3) biome1 += "3";
-        
-        if     (this.tabDomino[indice].getBiome2().getCouronne() == 1) biome2 += "1";
-        else if(this.tabDomino[indice].getBiome2().getCouronne() == 2) biome2 += "2";
-        else if(this.tabDomino[indice].getBiome2().getCouronne() == 3) biome2 += "3";*/
-        
-        //this.tabJoueur[this.joueurCourant].getPlateau()
-                
-        
+
         
         this.ihm.poserTuile(biome1, x, y);
         this.ihm.poserTuile(biome2, (x + xOrientation), (y+yOrientation));
