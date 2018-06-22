@@ -24,7 +24,7 @@ public class FrameVictoire extends JFrame implements ActionListener
 		this.panelVictoire.add(labelVictoire);
 		
 		this.add(this.panelVictoire, BorderLayout.NORTH);
-                this.setImage("Bravo.gif");
+                this.setImage("image/Bravo.gif");
                 this.add(this.labImage);
 		this.add(this.btnValider, BorderLayout.SOUTH);
 		

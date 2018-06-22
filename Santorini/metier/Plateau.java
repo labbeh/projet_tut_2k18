@@ -44,7 +44,6 @@ public class Plateau
         this.ensJoueur[0] = new Joueur(joueur1, this);
         this.ensJoueur[1] = new Joueur(joueur2, this);
         
-        this.grilleJeu[2][1] = 0;                           //permet de mettre en 2/1 la taille 0 a la tour
     }
     
     /*-------------------*/
@@ -119,16 +118,16 @@ public class Plateau
             for (int cptColonne = (colonne-1); cptColonne <= (colonne+1); cptColonne++)
                 try
                 {
-                    if(this.grilleJeu[cptLigne][cptColonne] - hauteur <= 1 && hauteur < 4 && grilleBat[cptLigne][cptColonne] == null)
+                    if(this.grilleJeu[cptLigne][cptColonne] - hauteur <= 1 && this.grilleJeu[cptLigne][cptColonne] < 4 && grilleBat[cptLigne][cptColonne] == null)
                     {
-                        switch( ligne - cptLigne )
+                        switch( cptLigne - ligne )
                         {
                             case -1 : direction += "N";
                                      break;
                             case 1  : direction += "S";
                                      break;
                         }
-                        switch( colonne - cptColonne)
+                        switch( cptColonne - colonne )
                         {
                             case -1 : direction += "O";
                                      break;
@@ -143,43 +142,6 @@ public class Plateau
         
         return aDepl;
     } 
-        
-    
-    
-    /**
-     * Test si le Batisseur chosie est bloque
-     * @param batisseur le batissuer choisie
-     * @return vrai si le Batisseur est bloque
-     */
-    /*public boolean estBloqueUnitaire(Batisseur batisseur)
-    {
-        String grilleBat[][]  = this.ensJoueur[1].getBatisseur(2).grilleBat;
-        int ligne =  batisseur.getLigne();
-        int colonne =  batisseur.getColonne();
-        int hauteur =  this.grilleJeu[ligne][colonne];
-        int sortiePossible = 0;
-            
-        
-        for (int cptLigne = (ligne-1); cptLigne <= (ligne+1); cptLigne++)
-        {
-            for (int cptColonne = (colonne-1); cptColonne <= (colonne+1); cptColonne++)
-            {
-                try{
-                    if(this.grilleJeu[cptLigne][cptColonne] - hauteur <= 1 && grilleBat[cptLigne][cptColonne] == null)
-                    {
-                        sortiePossible ++;
-                    }
-                }catch(ArrayIndexOutOfBoundsException evt){}
-            }
-        }
-        
-        if(sortiePossible >= 1) return false;
-        return true;
-    }*/
-    /**
-     * Test si un des joueur est totalement bloquer et donc si un joueur a gagne
-     * @return Le joueur non bloquer/Gagnagnt
-     */
     public Joueur estBloque()
     {
         if(deplacementDispo(this.ensJoueur[0].getBatisseur(1)).size() == 0 && deplacementDispo(this.ensJoueur[0].getBatisseur(2)).size() == 0) return this.ensJoueur[1];
@@ -232,6 +194,9 @@ public class Plateau
         
         return grilleAffi;
     }
+    public void suppBat(){}
+    
+    public void suppEtage(){}
     
     
     /*-------------------*/
@@ -261,7 +226,6 @@ public class Plateau
      * @return Le joueur choisie
      */
     public Joueur getJoueur(int numJoueur)   {return this.ensJoueur[numJoueur];}
-    
     
     
     

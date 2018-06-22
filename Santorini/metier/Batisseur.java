@@ -25,6 +25,7 @@ public class Batisseur {
     private Plateau plateau;
     boolean depla = false;
     private String id;
+    private Joueur joueur;
     
     /*-------------------*/
     /*   CONSTRUCTEUR    */
@@ -35,10 +36,11 @@ public class Batisseur {
      * @param id permet de representer le Batisseur
      * @param plateau donne l'acces au plateau aux Batisseur
      */
-    public Batisseur(String id ,Plateau plateau)
+    public Batisseur(String id ,Plateau plateau , Joueur joueur)
     {
         this.plateau = plateau;
         this.id = id;
+        this.joueur = joueur;
     }
     
     /*-------------------*/
@@ -142,6 +144,8 @@ public class Batisseur {
     public int getPos    () {return (this.posLigne * 10) + this.posColonne;}
     
     public String getId  () {return this.id;}
+    
+    public  Joueur getJoueur() {return this.joueur;}
     
 }
 

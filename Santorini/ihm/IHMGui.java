@@ -25,18 +25,19 @@ public class IHMGui extends JFrame
         this.ctrl = ctrl;
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1000, 1000);
+        this.setSize(1000, 1050);
         this.setResizable(false);
         
         this.plateau = new PanelPlateau(this.ctrl, this);
-        this.infos   = new PanelInfos  (J1, J2);
+        this.infos   = new PanelInfos  (J1, J2,this);
         
         this.add(this.infos, BorderLayout.NORTH);
         this.add(this.plateau, BorderLayout.CENTER);
         
         this.setVisible(true);
     }
-    
+    public void setText(String text){this.infos.setText(text);}
+    public void setBouton(int phase){this.infos.setBouton(phase);}
     /**
      * Permet de renvoyer l'objet PanelPlateau
      * @return 
@@ -62,4 +63,6 @@ public class IHMGui extends JFrame
      * @param numJoueur 
      */
     public void changerJoueur(int numJoueur                     ){this.infos.changerJoueur(numJoueur)       ;}
+    
+    public void resetChoix(){plateau.resetChoix();}
 }

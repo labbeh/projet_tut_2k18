@@ -12,8 +12,6 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.awt.event.ItemEvent;
-//import java.awt.event.ItemListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -90,8 +88,6 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         this.add(this.panelBtn, BorderLayout.SOUTH);
         
         this.setImage("./kingLogo.jpg");
-        //this.pack();
-        //System.out.println(this.getWidth() +" "+ this.getHeight());
         this.setVisible(true);
     }
     
@@ -127,7 +123,7 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
             this.msgErreur.setText("");
             this.setVisible(false);
             if(this.choixJeu.getSelectedValue().equals(LanceurGraphique.TYPE_JEU[0]))
-                this.setImage("kingLogo.jpg"); //remplacer par new kingdomino.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
+                this.setImage("kingLogo.jpg");                               //remplacer par new kingdomino.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
             else
                 new Santorini.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
             
