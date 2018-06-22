@@ -1,5 +1,4 @@
 package projet_tut_2018.kingdomino.metier;
-
 /**
  * Class Champs
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 

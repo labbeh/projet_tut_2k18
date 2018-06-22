@@ -12,15 +12,20 @@ abstract class Biome
 {
 	protected int point = -1;
 	private String couleur;
+	private static int numBiomeStk = 0;
+	private int numBiome; 
 	
 /**
  *Constructeur de Biome
  *
  *@param point : le nombre de point du biome (couronnes)
 */
-	public Biome(int point){this.point=point;}
+	public Biome(int point){this.point=point;
+							this.numBiome = numBiomeStk++;}
 
 	public         int    getPoint(){return this.point;}
+	public         int    getNum()  {if (this != null)return this.numBiome;return -1;}
+	//public         Biome  getBiome()
 
 	public   String       getCouronne()
 	{

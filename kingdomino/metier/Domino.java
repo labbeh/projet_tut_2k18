@@ -50,8 +50,10 @@ public class Domino
 	}
 
 	public char  getSens(){return this.sens;}
+        
 	public Biome getBiome1(){return this.biome1;}
 	public Biome getBiome2(){return this.biome2;}
+        
 	public Roi   getRoi()   {return this.roi;}
 	public int getNumDomino(){return this.numDomino;}
 
@@ -63,6 +65,7 @@ public class Domino
 		else
 			return "tuile" + this.numDomino;
 	}
+
 
 	public void setSens()
 	{

@@ -165,10 +165,10 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         this.setVisible  (true );
     }
     
-    public void poserTuile(String url)
+    public void poserTuile(String url, int x, int y)
     {
-        if(this.ctrl.getNumJoueurCourant() == 1) this.visuJ1.poserTuile(url);
-        else                                     this.visuJ2.poserTuile(url);
+        if(this.ctrl.getNumJoueurCourant() == 1) this.visuJ1.poserTuile(url, x, y);
+        else                                     this.visuJ2.poserTuile(url, x, y);
     }
     
     public void refresh()
@@ -213,6 +213,15 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         try
         {
             return Integer.parseInt(this.txtPosX.getText());
+        }
+        catch(NumberFormatException evt){return -1;}
+    }
+    
+    public int getPosY()
+    {
+        try
+        {
+            return Integer.parseInt(this.txtPosY.getText());
         }
         catch(NumberFormatException evt){return -1;}
     }

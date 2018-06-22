@@ -99,6 +99,9 @@ public class Pioche
 		}
 		sc.close();
 
+		//for(int i = 0; i<ens.size();i++)
+			//System.out.println(ens.get(i).getNumDomino());
+
 
 		/* Mélange de la Pioche */
 		/* -------------------- */

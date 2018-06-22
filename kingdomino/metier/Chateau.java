@@ -1,5 +1,4 @@
 package projet_tut_2018.kingdomino.metier;
-
 /**
  * Class Chateau
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -8,11 +7,10 @@ package projet_tut_2018.kingdomino.metier;
  *
 */
 
-
 public class Chateau extends Biome
 {
 	//private static final String COULEUR = "Chateau (gris)";
-	private static final String IMAGE = "CT";
+	public static final String IMAGE = "CT";
 	public Chateau(int point){super(point);}
 	public String getImage(){return Chateau.IMAGE;}
 }

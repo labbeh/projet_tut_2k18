@@ -1,5 +1,4 @@
 package projet_tut_2018.kingdomino.metier;
-
 /**
  * Class Foret
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 

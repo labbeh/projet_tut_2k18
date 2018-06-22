@@ -21,11 +21,11 @@ public class ImageTuile
     private int posX;
     private int posY;
     
-    public ImageTuile(String nom)
+    public ImageTuile(String nom, int posX, int posY)
     {
         this.nom  = nom ;
-        this.posX = 0   ;
-        this.posY = 0   ;
+        this.posX = posX;
+        this.posY = posY;
     }
     
     public Image getImage()
