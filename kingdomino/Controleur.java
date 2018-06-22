@@ -28,7 +28,7 @@ public class Controleur
     {
         this.pioche = new Pioche();
         this.pioche.initPioche();
-
+        
         this.tabJoueur     = new Joueur[]{ new Joueur(nomJ1, "rouge"), new Joueur(nomJ2, "bleu") };
         this.joueurCourant = 0;
         
@@ -39,6 +39,7 @@ public class Controleur
     public String getNomJoueurCourant    (){ return this.tabJoueur[this.joueurCourant].getNom    (); }
     public String getCouleurJoueurCourant(){ return this.tabJoueur[this.joueurCourant].getCouleur(); }
     public int    getNumJoueurCourant    (){ return this.joueurCourant                             ; }
+    public Joueur getJoueurCourant       (){ return this.tabJoueur[this.joueurCourant]             ; }
     
     public String getNomImage(int num){ return this.pioche.piocher().getImage(); }
     
@@ -48,7 +49,8 @@ public class Controleur
         int y = this.ihm.getPosY();
         
         
-        String biome = new String();
+        String biome = new String("Lac");
+        //System.out.println(this.getJoueurCourant().getPlateau().)
         
         this.ihm.poserTuile(biome, x, y);
         this.changerJoueur();
@@ -67,13 +69,12 @@ public class Controleur
     
     public static void main(String[] args)
     {
-        Controleur c = new Controleur("labbeh", "le pivert");
+        Controleur c = new Controleur("labbeh", "beaumontn");
         System.out.println(c.getNomJoueurCourant());
         
         java.util.Scanner sc = new java.util.Scanner(System.in);
         sc.nextLine();
         
         c.changerJoueur();
-        //c.refresh();
     }
 }
