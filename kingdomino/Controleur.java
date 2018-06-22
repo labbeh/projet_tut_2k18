@@ -21,6 +21,8 @@ public class Controleur
     private Joueur[] tabJoueur;
     private Domino[] tabDomino;
     
+    //private JeuV2     j;
+    
     private int      joueurCourant;
     private Pioche   pioche       ;
     
@@ -30,9 +32,11 @@ public class Controleur
         this.pioche.initPioche();
         this.tabDomino = new Domino[4];
         
-        this.tabJoueur     = new Joueur[]{ new Joueur(nomJ1, "rouge"), new Joueur(nomJ2, "bleu") };
+        this.tabJoueur     = new Joueur[]{new Joueur(nomJ1, "bleu"), new Joueur(nomJ2, "rouge")};
         this.joueurCourant = 0;
         
+        //j = new JeuV2();
+        //j.jouer();
         this.initPioche();
         this.ihm = new IHMGuiV2(this);
     }
@@ -57,7 +61,10 @@ public class Controleur
     {
         int x = this.ihm.getPosX();
         int y = this.ihm.getPosY();
-        
+        int xOrientation = 0;
+        int yOrientation = 0;
+        char sens = 'b';
+                
         int indice = this.ihm.getDernierClique();
         int nbCouronnes;
         
@@ -65,17 +72,20 @@ public class Controleur
         String biome1 = this.tabDomino[indice].getBiome1().getImage();
         String biome2 = this.tabDomino[indice].getBiome2().getImage();
         
-        if     (this.tabDomino[indice].getBiome1().getCouronne() == 1) biome1 += "1";
+        /*if     (this.tabDomino[indice].getBiome1().getCouronne() == 1) biome1 += "1";
         else if(this.tabDomino[indice].getBiome1().getCouronne() == 2) biome1 += "2";
         else if(this.tabDomino[indice].getBiome1().getCouronne() == 3) biome1 += "3";
         
         if     (this.tabDomino[indice].getBiome2().getCouronne() == 1) biome2 += "1";
         else if(this.tabDomino[indice].getBiome2().getCouronne() == 2) biome2 += "2";
-        else if(this.tabDomino[indice].getBiome2().getCouronne() == 3) biome2 += "3";
+        else if(this.tabDomino[indice].getBiome2().getCouronne() == 3) biome2 += "3";*/
+        
+        //this.tabJoueur[this.joueurCourant].getPlateau()
+                
         
         
         this.ihm.poserTuile(biome1, x, y);
-        this.ihm.poserTuile(biome2, x, y+50);
+        this.ihm.poserTuile(biome2, (x + xOrientation), (y+yOrientation));
         
         this.changerJoueur();
         
@@ -94,6 +104,7 @@ public class Controleur
     public static void main(String[] args)
     {
         Controleur c = new Controleur("labbeh", "beaumontn");
+        
         
     }
 }
