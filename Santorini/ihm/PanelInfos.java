@@ -51,7 +51,6 @@ public class PanelInfos extends JPanel implements ActionListener
         
         
         this.dinamique.add(this.lbMsg    , BorderLayout.CENTER);
-        this.dinamique.add(this.bouton    , BorderLayout.CENTER);
         
         this.add(this.lbJoueur1, BorderLayout.WEST  );
         this.add(this.dinamique    , BorderLayout.CENTER);
@@ -79,8 +78,6 @@ public class PanelInfos extends JPanel implements ActionListener
     }
     public void setText(String txt)
     {
-        
-        this.dernierTxt = prec;
         this.lbMsg.setText(txt);
         prec = txt;
     }
