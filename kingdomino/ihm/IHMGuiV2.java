@@ -180,8 +180,9 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         //Condition pour mettre de la couleur en fonction du joueur
         if(couleur.equals("bleu")) this.lblTour.setForeground(new Color(0,0,255));
         else                  this.lblTour.setForeground(new Color(255,0,0));
-                
         
+        this.visuJ1.repaint();
+        this.visuJ2.repaint();
     }
     @Override
     public void actionPerformed(ActionEvent e)
