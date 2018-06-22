@@ -28,8 +28,6 @@ public class Controleur
     {
         this.pioche = new Pioche();
         this.pioche.initPioche();
-        //this.tabDomino = new Domino[4];
-        this.lancerJeu();
 
         this.tabJoueur     = new Joueur[]{ new Joueur(nomJ1, "rouge"), new Joueur(nomJ2, "bleu") };
         this.joueurCourant = 0;
@@ -48,7 +46,11 @@ public class Controleur
     {
         int x = this.ihm.getPosX();
         int y = this.ihm.getPosY();
-        this.ihm.poserTuile("Champs1", x, y);
+        
+        
+        String biome = new String();
+        
+        this.ihm.poserTuile(biome, x, y);
         this.changerJoueur();
         
     }
@@ -59,13 +61,6 @@ public class Controleur
         else                        this.joueurCourant = 0;
         
         this.refresh();
-    }
-    
-    public void lancerJeu()
-    {
-        /*for(int cpt=0; cpt<this.tabDomino.length; cpt++)
-            this.tabDomino[cpt] = this.pioche.piocher();*/
-        
     }
     
     public void refresh(){this.ihm.refresh();}
