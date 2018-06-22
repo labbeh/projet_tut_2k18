@@ -30,7 +30,7 @@ public class ImageTuile
     
     public Image getImage()
     {
-        Image imgRet = Toolkit.getDefaultToolkit().getImage( "imgs/tuileDepart.gif" );
+        Image imgRet = Toolkit.getDefaultToolkit().getImage( "imgs/" +this.nom+ ".gif" );
         /*BufferedImage bffImgRet;
         try
         {

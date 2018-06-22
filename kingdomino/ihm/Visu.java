@@ -36,6 +36,11 @@ public class Visu extends JPanel
     {
         this.alTuiles = new ArrayList<ImageTuile>();
     }
+    
+    public void poserTuile(String url)
+    {
+        this.alTuiles.add(new ImageTuile(url));
+    }
 	
     public void paintComponent(Graphics g)
     {

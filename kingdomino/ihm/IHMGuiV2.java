@@ -13,11 +13,13 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
+import projet_tut_2018.Fenetre;
+
 /**
  *
  * @author labbeh
  */
-public class IHMGuiV2 extends JFrame implements ActionListener
+public class IHMGuiV2 extends Fenetre implements ActionListener
 {
     private Controleur ctrl;
     // ------- PANEL NORD //
@@ -50,6 +52,8 @@ public class IHMGuiV2 extends JFrame implements ActionListener
     private JPanel panelJoueur;
     //private JPanel joueur1;
     //private JPanel joueur2;
+    private Visu visuJ1;
+    private Visu visuJ2;
 	
     private JLabel lblJ1;
     private JLabel lblJ2;
@@ -65,11 +69,12 @@ public class IHMGuiV2 extends JFrame implements ActionListener
 	
     public IHMGuiV2( Controleur ctrl )
     {
+        super("KINGDOMINO");
         this.ctrl = ctrl;
         this.nomJ1 = ctrl.getNomJoueur(0);
         this.nomJ2 = ctrl.getNomJoueur(1);
         
-        this.setTitle   ("KINGDOMINO");
+        /*this.setTitle   ("KINGDOMINO");
         this.setLocation(100,100     );
         this.setSize    (820,700     );
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +86,7 @@ public class IHMGuiV2 extends JFrame implements ActionListener
                 UIManager.setLookAndFeel(new MetalLookAndFeel());
             }
              catch(UnsupportedLookAndFeelException e){ e.printStackTrace(); }
-        }
+        }*/
 		
         // ** Création du panel nord ** //
         this.panelTour = new JPanel();
@@ -126,11 +131,11 @@ public class IHMGuiV2 extends JFrame implements ActionListener
         this. ensPioche= new JButton[4];
         for(int cpt=0; cpt<this.ensPioche.length; cpt++)
         {
-            this.ensPioche[cpt] = new JButton (new ImageIcon(/*this.ctrl.getNomImage(cpt)*/ "imgs/tuile40.gif"));//getImage().piocher()
+            this.ensPioche[cpt] = new JButton (new ImageIcon( "imgs/" +this.ctrl.getNomImage(cpt)+ ".gif"));//getImage().piocher()
             this.ensPioche[cpt].setPreferredSize(new Dimension(290,145));
             this.panelPioche.add(this.ensPioche[cpt]);
             this.ensPioche[cpt].addActionListener(this);
-            //System.out.println(this.ctrl.getNomImage(cpt) +".gif");
+            //System.out.println("imgs/" +this.ctrl.getNomImage(cpt)+ ".gif");
         }
 		
         this.add(this.panelPioche, BorderLayout.EAST);
@@ -143,21 +148,27 @@ public class IHMGuiV2 extends JFrame implements ActionListener
         this.lblJ1.setFont(this.font18);
         this.panelJoueur.add(this.lblJ1);
         
-        Visu j1 = new Visu();
-        this.panelJoueur.add(j1);
+        visuJ1 = new Visu();
+        this.panelJoueur.add(this.visuJ1);
 		
         this.lblJ2 = new JLabel("Joueur Bleu 2 : " + this.nomJ2, JLabel.CENTER); //getNom()
         this.lblJ2.setForeground(new Color(0,0,255));
         this.lblJ2.setFont(this.font18);
         this.panelJoueur.add(this.lblJ2);
         
-        Visu j2 = new Visu();
-        this.panelJoueur.add(j2);
+        visuJ2 = new Visu();
+        this.panelJoueur.add(this.visuJ2);
 		
         this.add(this.panelJoueur);
 		
-        this.setResizable(false);
+        //this.setResizable(false);
         this.setVisible  (true );
+    }
+    
+    public void poserTuile(String url)
+    {
+        if(this.ctrl.getNumJoueurCourant() == 1) this.visuJ1.poserTuile(url);
+        else                                     this.visuJ2.poserTuile(url);
     }
     
     public void refresh()
@@ -183,6 +194,12 @@ public class IHMGuiV2 extends JFrame implements ActionListener
         
         System.out.println("(" +x+ ";" +y+")");
         
+        if(e.getSource() == this.btnValider)
+        {
+            this.ctrl.poserTuile();
+            return;
+        }
+        
         for(int cpt=0; cpt<this.ensPioche.length; cpt++)
             if(this.ensPioche[cpt] == e.getSource())
                 this.ensPioche[cpt].setEnabled(false);
@@ -190,6 +207,15 @@ public class IHMGuiV2 extends JFrame implements ActionListener
     
     //public void setNom    (String nom    ){this.nom     = nom    ;}
     public void setCouleur(String couleur){this.couleur = couleur;}
+    
+    public int getPosX()
+    {
+        try
+        {
+            return Integer.parseInt(this.txtPosX.getText());
+        }
+        catch(NumberFormatException evt){return -1;}
+    }
 }
 
 
