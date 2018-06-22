@@ -8,10 +8,14 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -36,10 +40,12 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
     private JTextField tfJ1;
     private JTextField tfJ2;
     
+    private JPanel panelBouton ;
     private JPanel  panelBtn;
     //private JPanel  panelNom;
     
     private JButton btnValider;
+    private JButton btnRegle;
     
     /**
      * Fenêtre de lancement qui permet à l'utilisateur de choisir le jeu ainsi que de saisir le nom des deux joueurs
@@ -53,9 +59,12 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         this.choixJeu = new JList<>(LanceurGraphique.TYPE_JEU);
+        this.choixJeu.setSelectedIndex(0);
         
         this.panelBtn   = new JPanel (         );
-        this.btnValider = new JButton("Valider");
+        
+        this.btnValider = new JButton("Commencer le Jeu");
+        this.btnRegle = new JButton("Regle du jeu");
         
         this.labImage  = new JLabel    ();
         this.msgErreur = new JLabel    ();
@@ -66,7 +75,7 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         this.panelBtn.setLayout(new BorderLayout());
         
         JPanel panelTf = new JPanel(new GridLayout(3,4));
-        
+        this.panelBouton = new JPanel();
         panelTf.add(new JLabel("Joueur 1: "));
         panelTf.add(this.tfJ1);
         
@@ -75,19 +84,24 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
         
         panelTf.add(this.msgErreur);
         
+        this.panelBouton.add(btnValider);
+        this.panelBouton.add(btnRegle);
         this.panelBtn.add(panelTf, BorderLayout.CENTER);
-        this.panelBtn.add(this.btnValider, BorderLayout.SOUTH);
+        this.panelBtn.add(panelBouton, BorderLayout.SOUTH);
+        
+        
+        this.add(this.panelBtn, BorderLayout.SOUTH);
         
         // ajout des écouteurs
         this.btnValider.addActionListener(this);
+        this.btnRegle.addActionListener(this);
         this.choixJeu.addListSelectionListener(this);
         
         // ajout des éléments à la fenêtre
         this.add(this.choixJeu, BorderLayout.NORTH);
         this.add(this.labImage, BorderLayout.CENTER);
-        this.add(this.panelBtn, BorderLayout.SOUTH);
         
-        this.setImage("./kingLogo.jpg");
+        this.setImage("kingLogo.jpg");
         this.setVisible(true);
     }
     
@@ -113,21 +127,48 @@ public class LanceurGraphique extends JFrame implements ActionListener, ListSele
     @Override
     public void actionPerformed(ActionEvent evt)
     {
-        if(this.tfJ1.getText().equals("") || this.tfJ2.getText().equals(""))
+        String lien = "";
+        if(this.choixJeu.getSelectedValue().equals(LanceurGraphique.TYPE_JEU[0]))
+            lien = "https://lc.cx/mBF3";
+        else
+            lien = "https://lc.cx/mXYt";
+        if (evt.getSource()== this.btnRegle)
         {
-            this.msgErreur.setForeground(Color.RED);
-            this.msgErreur.setText("ERREUR: veuillez saisir les noms des deux joueurs");
+            if(Desktop.isDesktopSupported())
+            {
+                    if(Desktop.getDesktop().isSupported(Desktop.Action.BROWSE))
+                    {
+                            URI uri;
+                            try {
+                                    uri = new URI(lien);
+                                    Desktop.getDesktop().browse(uri);
+                            } catch (URISyntaxException arg0) {
+                                    arg0.printStackTrace();
+                            } catch (IOException arg0) {
+                                    arg0.printStackTrace();
+                            }
+                    }
+            }  
         }
         else
         {
-            this.msgErreur.setText("");
-            this.setVisible(false);
-            if(this.choixJeu.getSelectedValue().equals(LanceurGraphique.TYPE_JEU[0]))
-                this.setImage("kingLogo.jpg");                               //remplacer par new kingdomino.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
+            if(this.tfJ1.getText().equals("") || this.tfJ2.getText().equals(""))
+            {
+                this.msgErreur.setForeground(Color.RED);
+                this.msgErreur.setText("ERREUR: veuillez saisir les noms des deux joueurs");
+            }
             else
-                new Santorini.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
-            
+            {
+                this.msgErreur.setText("");
+                this.setVisible(false);
+                if(this.choixJeu.getSelectedValue().equals(LanceurGraphique.TYPE_JEU[0]))
+                    new     kingdomino.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
+                else
+                    new Santorini.Controleur(this.tfJ1.getText(), this.tfJ2.getText());
+
+            }
         }
+        
     }
 
     /**
