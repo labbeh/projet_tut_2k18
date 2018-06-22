@@ -1,5 +1,4 @@
 package projet_tut_2018.kingdomino.metier;
-
 /**
  * Class Biome
  * @author  BEAUMONT, LECHANOINE, LEBOSSE, DUPONT, LEVALLOIS, LABBE 
@@ -8,7 +7,7 @@ package projet_tut_2018.kingdomino.metier;
  *
 */
 
-abstract class Biome
+public abstract class Biome
 {
 	protected int point = -1;
 	private String couleur;
@@ -25,15 +24,7 @@ abstract class Biome
 
 	public         int    getPoint(){return this.point;}
 	public         int    getNum()  {if (this != null)return this.numBiome;return -1;}
-	//public         Biome  getBiome()
-
-	public   String       getCouronne()
-	{
-		if (this.point == 1 ){return "une_couronne";}
-		if (this.point == 2 ){return "deux_couronne";}
-		if (this.point == 3 ){return "trois_couronne";}
-		return null; 
-	}
+	public         Biome  getBiome(){return this;}
 
 	public boolean equals(Biome biome){if(biome != null) return this.getImage().equals(biome.getImage());
 										return false;}
@@ -43,6 +34,6 @@ abstract class Biome
 	public String toString()
 	{
 		if (this.getPoint() == -1){return "rien";}
-		return "   " + String.format("%5s", this.getImage()) + String.format("%02d", this.point) ; }
+		return " " + String.format("%7s", this.getImage()) + String.format("%02d", this.point) ; }
 
 }

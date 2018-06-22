@@ -12,6 +12,10 @@ public class Foret extends Biome
 	//public static final String COULEUR = "Foret (Kaki)";
 	public static final String IMAGE = "foret";
 	public Foret(int point){super(point);}
-	public String getImage(){return Foret.IMAGE;}
+	public String getImage()
+	{
+		if (this.point == 0)return Foret.IMAGE;
+		else   return Foret.IMAGE+this.point;
+	}
 
 }

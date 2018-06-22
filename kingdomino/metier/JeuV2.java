@@ -45,13 +45,15 @@ public class JeuV2
  *@
 */
 
-	/*public void jouer()
+	public void jouer()
 	{
 		this.tuilePiochee = new ArrayList<Domino>();
 
-		this.tabJoueur[0] = new Joueur("bleu");
+		//this.tabJoueur[0] = new Joueur("bleu");
+                this.tabJoueur[0].setNom("labbeu");
 		this.tabJoueur[0].ajouterPlateau(new Plateau());
-		this.tabJoueur[1] = new Joueur("rouge");
+		//this.tabJoueur[1] = new Joueur("rouge");
+                this.tabJoueur[1].setNom("beaumontn");
 		this.tabJoueur[1].ajouterPlateau(new Plateau());
 
 		boolean bOk = false;
@@ -63,13 +65,13 @@ public class JeuV2
 		while( ! bOk );		
 
 
-		for (int nbJoueur = 0; nbJoueur < tabJoueur.length; nbJoueur++)
+		/*for (int nbJoueur = 0; nbJoueur < tabJoueur.length; nbJoueur++)
 		{
 			Scanner in = new Scanner(System.in);
 			System.out.print("Joueur " + nbJoueur + " saisissez votre nom : " );
 			String str  = in.nextLine();
 			this.tabJoueur[nbJoueur].setNom(str);
-		}
+		}*/
 
 		this.arrayRoi = new ArrayList<Integer>();
 		this.arrayRoi.add(0);
@@ -87,7 +89,7 @@ public class JeuV2
 
 
 		}
-	}*/
+	}
 
 	public void initManche()
 	{
@@ -131,7 +133,7 @@ public class JeuV2
 			tuileUtil = this.tuilePiochee.get(choix);
 			System.out.println(tuileUtil.toString());
 
-			System.out.println(this.tabJoueur[joueurCourant].getPlateau().toString());
+			//System.out.println(this.tabJoueur[joueurCourant].getPlateau().toString());
 
 			while(!bOk || (str.length()!= 3 || x < 0 || x > 4|| y < 0 || y > 4  || s != 'N' && s != 'O' && s != 'S' && s != 'E' ))
 			{

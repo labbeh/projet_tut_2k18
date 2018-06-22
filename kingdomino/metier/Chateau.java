@@ -9,8 +9,7 @@ package projet_tut_2018.kingdomino.metier;
 
 public class Chateau extends Biome
 {
-	//private static final String COULEUR = "Chateau (gris)";
-	public static final String IMAGE = "CT";
+	public static final String IMAGE = "tuileDepart";
 	public Chateau(int point){super(point);}
 	public String getImage(){return Chateau.IMAGE;}
 }

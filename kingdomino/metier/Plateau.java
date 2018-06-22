@@ -8,7 +8,7 @@ package projet_tut_2018.kingdomino.metier;
 */
 
 import java.util.ArrayList;
-//import java.util.Scanner;
+import java.util.Scanner;
 import java.util.Collections;
 
 public class Plateau
@@ -33,37 +33,71 @@ public class Plateau
 
 	}
 
+	public Biome[][] getTabJeu(){return this.tabJeu;}
+	public Biome     getBiome(int indLig,int indCol){return tabJeu[indLig][indCol];}
+	public void      setTab(Biome[][] tab){this.tabJeu = tab;}
+
+	/*--------------methodes tests---------------*/
+	/*-------------------------------------------*/
+
+	public Plateau getTabTest()
+	{
+		Biome[][] tabTest = new Biome[5][5];
+
+		tabTest[0][0] = new Chateau(0); 
+		tabTest[0][1] = new Champs(2);
+		tabTest[0][2] = new Champs(0);
+		tabTest[0][3] = new Champs(0);
+		tabTest[0][4] = new Lac(0);
+		tabTest[1][0] = new Champs(0);
+		tabTest[1][1] = new Champs(0);
+		tabTest[1][2] = new	Mine (3);
+		tabTest[1][3] = new Mine (0);
+		tabTest[1][4] = new Marais(0);
+		tabTest[2][0] = new Champs(0);
+		tabTest[2][1] = new Champs(0);
+		tabTest[2][2] = new Champs(0);
+		tabTest[2][3] = new Marais(0);
+		tabTest[2][4] = new Marais(0);
+		tabTest[3][0] = new Mine(0);
+		tabTest[3][1] = new Mine(0);
+		tabTest[3][2] = new Marais(0);
+		tabTest[3][3] = new Marais(2);
+		tabTest[3][4] = new Marais(0);
+		tabTest[4][0] = new Lac(0);
+		tabTest[4][1] = new Lac(1);
+		tabTest[4][2] = new Lac(0);
+		tabTest[4][3] = new Champs(0);
+		tabTest[4][4] = new Champs(1);
+
+		Plateau pl = new Plateau();
+		pl.setTab(tabTest);
+
+
+		return pl;
+
+	}
+
 /**
  *Initialisation de l'affichage du plateau et du chateau (premiere carte de jeu)
  *
  *@return un booleen, vrai si le chateau à été placé dans le plateau, faux s il est en dehors 
 */
 
+
 	public boolean initPlateau()
 	{
-		//Scanner in  = new Scanner(System.in);
-		System.out.print("placez le chateau : (ligne:colonne)");
-		String str  = "44";
-		if (str.length() != 2 || !Character.isDigit(str.charAt(0)) || ! Character.isDigit(str.charAt(1)) ){return false;}
-			int ligne   = (int) str.charAt(0) - '0';
-			int colonne = (int) str.charAt(1) - '0';
 
-		System.out.println("check");
 
-		if (ligne >= 5 || ligne < 0){return false;}
-		if (colonne >= 5 || colonne < 0){return false;}
 
-		System.out.println("check");
 
 		this.tuileJouees.add( new Domino(new Chateau(0)));
-		tabJeu[ligne][colonne] = this.tuileJouees.get(0).getBiome1();
-		System.out.println("check");
+		tabJeu[2][2] = this.tuileJouees.get(0).getBiome1();
 
 		System.out.println(this.tuileJouees.get(0).toString());
 
 
 
-		//in.close();
 		return true;
 
 	}
@@ -76,63 +110,61 @@ public class Plateau
 		return true;
 	}
 
-	public boolean estCompatible(int ligne, int colonne, int ligne2, int colonne2, Domino domino, char sens)
+	public boolean estCompatible(int ligneG, int colonneG, int ligneD, int colonneD, Biome biomeG, Biome biomeD, char sens)
 	{
 		boolean bOk = false;
-		if(domino.getBiome1() != domino.getBiome2())
-		{
-			if( ligne+1 < 4  && tabJeu[ligne+1][colonne] == domino.getBiome1() || tabJeu[ligne+1][colonne] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			if(colonne+1 < 4 && tabJeu[ligne][colonne+1] == domino.getBiome1() || tabJeu[ligne][colonne+1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			if( ligne-1 > 0  && tabJeu[ligne-1][colonne] == domino.getBiome1() || tabJeu[ligne-1][colonne] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			if(colonne-1 > 0 && tabJeu[ligne][colonne-1] == domino.getBiome1() || tabJeu[ligne][colonne-1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-	
-			if( ligne2+1 < 4 && tabJeu[ligne2+1][colonne2] == domino.getBiome2() || tabJeu[ligne2+1][colonne2] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			if(colonne2+1< 4 && tabJeu[ligne2][colonne2+1] == domino.getBiome2() || tabJeu[ligne2][colonne2+1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			if( ligne2-1 > 0 && tabJeu[ligne2-1][colonne2] == domino.getBiome2() || tabJeu[ligne2-1][colonne2] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			if(colonne2-1> 0 && tabJeu[ligne2][colonne2-1] == domino.getBiome2() || tabJeu[ligne2][colonne2-1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-		}
-		else 
-		{
-			if (sens == 'N' || sens == 'S')
-			{
-				if(colonne+1 < 4 && tabJeu[ligne][colonne+1] == domino.getBiome1() || tabJeu[ligne][colonne+1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if( ligne-1 > 0  && tabJeu[ligne-1][colonne] == domino.getBiome1() || tabJeu[ligne-1][colonne] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if(colonne-1 > 0 && tabJeu[ligne][colonne-1] == domino.getBiome1() || tabJeu[ligne][colonne-1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-	
-				if( ligne2+1 < 4 && tabJeu[ligne2+1][colonne2] == domino.getBiome2() || tabJeu[ligne2+1][colonne2] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if(colonne2+1< 4 && tabJeu[ligne2][colonne2+1] == domino.getBiome2() || tabJeu[ligne2][colonne2+1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if(colonne2-1> 0 && tabJeu[ligne2][colonne2-1] == domino.getBiome2() || tabJeu[ligne2][colonne2-1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			}
-			else
-			{
-				if( ligne+1 < 4  && tabJeu[ligne+1][colonne] == domino.getBiome1() || tabJeu[ligne+1][colonne] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if( ligne-1 > 0  && tabJeu[ligne-1][colonne] == domino.getBiome1() || tabJeu[ligne-1][colonne] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if(colonne-1 > 0 && tabJeu[ligne][colonne-1] == domino.getBiome1() || tabJeu[ligne][colonne-1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-	
-				if( ligne2+1 < 4 && tabJeu[ligne2+1][colonne2] == domino.getBiome2() || tabJeu[ligne2+1][colonne2] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if(colonne2+1< 4 && tabJeu[ligne2][colonne2+1] == domino.getBiome2() || tabJeu[ligne2][colonne2+1] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-				if( ligne2-1 > 0 && tabJeu[ligne2-1][colonne2] == domino.getBiome2() || tabJeu[ligne2-1][colonne2] == this.tuileJouees.get(0).getBiome1()){bOk = true;}
-			}
-		}
+
+		int tmpLigneG = ligneG;
+		int tmpColonneG = colonneG;
+		int tmpLigneD = ligneD;
+		int tmpColonneD = colonneD;
+
+		for(int cptLigneG = ligneG - 1 ; cptLigneG <= ligneG + 1 ; cptLigneG += 2)
+			try{
+				if(biomeG.equals(tabJeu[cptLigneG][colonneG]) || this.tuileJouees.get(0).getBiome1().equals(tabJeu[cptLigneG][colonneG])){bOk = true;}
+			}catch(ArrayIndexOutOfBoundsException e){}
+
+		for(int cptColonneG = colonneG - 1 ; cptColonneG <= colonneG + 1 ; cptColonneG += 2)
+			try{
+				if(biomeG.equals(tabJeu[ligneG][cptColonneG]) || this.tuileJouees.get(0).getBiome1().equals(tabJeu[ligneG][cptColonneG])){bOk = true;}
+			}catch(ArrayIndexOutOfBoundsException e){}
+
+		for(int cptLigneD = ligneD - 1 ; cptLigneD <= ligneD + 1 ; cptLigneD += 2)
+			try{
+				if(biomeD.equals(tabJeu[cptLigneD][colonneD]) || this.tuileJouees.get(0).getBiome1().equals(tabJeu[cptLigneD][colonneD])){bOk = true;}
+			}catch(ArrayIndexOutOfBoundsException e){}
+
+		for(int cptColonneD = colonneD - 1 ; cptColonneD <= colonneD + 1 ; cptColonneD += 2)
+			try{
+				if(biomeD.equals(tabJeu[ligneD][cptColonneD]) || this.tuileJouees.get(0).getBiome1().equals(tabJeu[ligneD][cptColonneD])){bOk = true;}
+			}catch(ArrayIndexOutOfBoundsException e){}
+
 		return bOk;
 	}
 
-	public  boolean placerDomino(int ligne, int colonne, Domino domino, char sens )
+	public  boolean placerDomino(int ligne, int colonne, Domino domino, char sens)
 	{
 		int ligne2 = 0;
 		int colonne2 = 0;
+
+		Biome biomeG = domino.getBiome1();
+		Biome biomeD = domino.getBiome2();
+
 		if (estOccupe(ligne, colonne)){return false;}
 
-		if (sens == 'N' && estOccupe(ligne - 1, colonne)){return false;}
-		else {--ligne2;}
-		if (sens == 'E' && estOccupe(ligne, colonne + 1)){return false;}
-		else {++colonne2;}
-		if (sens == 'S' && estOccupe(ligne + 1, colonne)){return false;}
-		else{++ligne2;}
-		if (sens == '0' && estOccupe(ligne, colonne - 1)){return false;}
-		else{--colonne2;}
+		if (sens == 'N' && estOccupe(ligne - 1, colonne))return false;
+		if (sens == 'N' )ligne2-=1;
 
-		if (domino.getBiome1() == domino.getBiome2())
+		if (sens == 'E' && estOccupe(ligne, colonne + 1))return false;
+		if (sens == 'E' )colonne2+=1;
+
+		if (sens == 'S' && estOccupe(ligne + 1, colonne))return false;
+		if (sens == 'S' )ligne2+=1;
+		
+		if (sens == '0' && estOccupe(ligne, colonne - 1))return false;
+		if (sens == '0' )colonne2-=1;
+
+		if (biomeG == biomeD)
 		{
 			if (sens == 'N' || sens == 'S')
 				ligne2 = -1;
@@ -140,48 +172,65 @@ public class Plateau
 				colonne2 = 1;
 		}
 
+		ligne2 = ligne + ligne2;
+		colonne2 = colonne + colonne2;
 
-		if ( this.tuileJouees.size() == 1)
-		{
-			tabJeu[ligne][colonne] = domino.getBiome1();
-			tabJeu[ligne+ligne2][colonne+colonne2] = domino.getBiome2();
-			this.tuileJouees.add(domino);
-			return true;
-		}
-		else
-		{
-			if ( ! this.estCompatible(ligne, colonne, ligne2, colonne2, domino, sens)){return false;}
-			tabJeu[ligne][colonne] = domino.getBiome1();
-			tabJeu[ligne2][colonne2] = domino.getBiome2();
-			this.tuileJouees.add(domino);
-			return true;
-		}
+		if ( ! this.estCompatible(ligne, colonne, ligne2, colonne2, biomeG, biomeD, sens)){return false;}
+	
+		tabJeu[ligne][colonne] = biomeG;
+		tabJeu[ligne2][colonne2] = biomeD;
+
+		this.tuileJouees.add(domino);
+		return true;
 	}
+
+	/*public boolean plateauBloque()
+	{
+		boolean bOk = true;
+		for(int i = 0; i<this.tabJeu.length;i++)
+			for(int j = 0;i<this.tabJeu.length;j++)
+				if(tabJeu[i][j] == null)
+				{
+					int iTemp = i;int jTemp = j;
+					for(int iT = iTemp - 1 ; iT <= iTemp + 1 ; iT += 2)
+					try{
+						if(tabJeu[i][j] == tabJeu[iTemp][j]){bOk = false;}
+					}catch(ArrayIndexOutOfBoundsException e){}
+					for(int jT = jTemp - 1 ; jT <= jTemp + 1 ; jT += 2)
+					try{
+						if(tabJeu[i][j] == tabJeu[i][jTemp]){bOk = false;}
+					}catch(ArrayIndexOutOfBoundsException e){}
+				}
+		return bOk;*/
+
+
+	
 
 	public String toString()
 	{
-		String s =
-		"+----------+----------+----------+----------+----------+"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"|   "+tabJeu[0][0].toString()+"   |   "+tabJeu[0][1].toString()+"   |   "+tabJeu[0][2].toString()+"   |   "+tabJeu[0][3].toString()+"   |   "+tabJeu[0][4].toString()+"   |"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"+----------+----------+----------+----------+----------+"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"|   "+tabJeu[1][0].toString()+"   |   "+tabJeu[1][1].toString()+"   |   "+tabJeu[1][2].toString()+"   |   "+tabJeu[1][3].toString()+"   |   "+tabJeu[1][4].toString()+"   |"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"+----------+----------+----------+----------+----------+"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"|   "+tabJeu[2][0].toString()+"   |   "+tabJeu[2][1].toString()+"   |   "+tabJeu[2][2].toString()+"   |   "+tabJeu[2][3].toString()+"   |   "+tabJeu[2][4].toString()+"   |"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"+----------+----------+----------+----------+----------+"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"|   "+tabJeu[3][0].toString()+"   |   "+tabJeu[3][1].toString()+"   |   "+tabJeu[3][2].toString()+"   |   "+tabJeu[3][3].toString()+"   |   "+tabJeu[3][4].toString()+"   |"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"+----------+----------+----------+----------+----------+"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"|   "+tabJeu[4][0].toString()+"   |   "+tabJeu[4][1].toString()+"   |   "+tabJeu[4][2].toString()+"   |   "+tabJeu[4][3].toString()+"   |   "+tabJeu[4][4].toString()+"   |"+"\n"+
-		"|          |          |          |          |          |"+"\n"+
-		"+----------+----------+----------+----------+----------+"+"\n";
+		String n = "        01         02         03         04         05     "+"\n";
+		String l = "   +----------+----------+----------+----------+----------+"+"\n";
+		String m = "   |          |          |          |          |          |"+"\n";
+		String s =  "\n" + n + l;
+
+		for(int i = 0; i < 5; i++)
+		{
+			s += m + "0"+(i+1)+" |";
+
+			for(int j = 0; j < 5; j++)
+			{
+				if (tabJeu[i][j] != null)
+				{	
+					s += tabJeu[i][j].toString()+"|";
+				}
+				else
+					s += "          |";
+			}
+
+			s += "\n" + m + l;
+		}
+		s += n;
+		
 
 		return s;
 	}

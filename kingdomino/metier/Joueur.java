@@ -25,7 +25,7 @@ public class Joueur
  *@param plateau : plateau du joueur initialisé a null
 */
 
-	public Joueur(String nom, String couleur)
+	public Joueur( String nom, String couleur )
 	{
 		this.couleur  = couleur;
 		this.nbDomino = 0; 

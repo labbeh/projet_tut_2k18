@@ -9,8 +9,11 @@ package projet_tut_2018.kingdomino.metier;
 
 public class Mine extends Biome
 {
-	//public static final String COULEUR = "Mine (Noir)";
 	public static final String IMAGE = "mine";
 	public Mine(int point){super(point);}
-	public String getImage(){return Mine.IMAGE;}
+	public String getImage()
+	{
+		if (this.point == 0)return Mine.IMAGE;
+		else   return Mine.IMAGE+this.point;
+	}
 }

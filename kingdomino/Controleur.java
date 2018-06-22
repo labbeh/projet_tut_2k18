@@ -16,12 +16,9 @@ import java.util.ArrayList;
 public class Controleur
 {
     private IHMGuiV2 ihm;
-    //private Jeu      jeu;
     
     private Joueur[] tabJoueur;
     private Domino[] tabDomino;
-    
-    //private JeuV2     j;
     
     private int      joueurCourant;
     private Pioche   pioche       ;

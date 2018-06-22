@@ -22,6 +22,7 @@ import projet_tut_2018.Fenetre;
 public class IHMGuiV2 extends Fenetre implements ActionListener
 {
     private Controleur ctrl;
+    private int dernierClique;
     // ------- PANEL NORD //
     private JPanel panelTour;
     private JLabel lblTour;
@@ -74,19 +75,6 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         this.nomJ1 = ctrl.getNomJoueur(0);
         this.nomJ2 = ctrl.getNomJoueur(1);
         
-        /*this.setTitle   ("KINGDOMINO");
-        this.setLocation(100,100     );
-        this.setSize    (820,700     );
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            
-        if(System.getProperty("os.name").equals("Mac OS X"))
-        {
-            try
-            {
-                UIManager.setLookAndFeel(new MetalLookAndFeel());
-            }
-             catch(UnsupportedLookAndFeelException e){ e.printStackTrace(); }
-        }*/
 		
         // ** Création du panel nord ** //
         this.panelTour = new JPanel();
@@ -162,13 +150,14 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         this.add(this.panelJoueur);
 		
         //this.setResizable(false);
+        //this.refresh();
         this.setVisible  (true );
     }
     
     public void poserTuile(String url, int x, int y)
     {
-        if(this.ctrl.getNumJoueurCourant() == 1) this.visuJ1.poserTuile(url, x, y);
-        else                                     this.visuJ2.poserTuile(url, x, y);
+        if(this.ctrl.getNumJoueurCourant() == 1) this.visuJ1.poserTuile(url, x*50, y*50);
+        else                                     this.visuJ2.poserTuile(url, x*50, y*50);
     }
     
     public void refresh()
@@ -179,7 +168,7 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         
         //Condition pour mettre de la couleur en fonction du joueur
         if(couleur.equals("bleu")) this.lblTour.setForeground(new Color(0,0,255));
-        else                  this.lblTour.setForeground(new Color(255,0,0));
+        else                       this.lblTour.setForeground(new Color(255,0,0));
         
         this.visuJ1.repaint();
         this.visuJ2.repaint();
@@ -203,7 +192,11 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         
         for(int cpt=0; cpt<this.ensPioche.length; cpt++)
             if(this.ensPioche[cpt] == e.getSource())
+            {
                 this.ensPioche[cpt].setEnabled(false);
+                this.dernierClique = cpt;
+                //System.out.println(cpt);
+            }
     }
     
     //public void setNom    (String nom    ){this.nom     = nom    ;}
@@ -226,6 +219,8 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         }
         catch(NumberFormatException evt){return -1;}
     }
+
+    public int getDernierClique(){ return this.dernierClique; }
 }
 
 
