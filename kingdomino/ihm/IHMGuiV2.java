@@ -53,8 +53,8 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
     private JPanel panelJoueur;
     //private JPanel joueur1;
     //private JPanel joueur2;
-    private Visu visuJ1;
-    private Visu visuJ2;
+    private VisuV2 visuJ1;
+    private VisuV2 visuJ2;
 	
     private JLabel lblJ1;
     private JLabel lblJ2;
@@ -136,7 +136,7 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         this.lblJ1.setFont(this.font18);
         this.panelJoueur.add(this.lblJ1);
         
-        visuJ1 = new Visu();
+        visuJ1 = new VisuV2();
         this.panelJoueur.add(this.visuJ1);
 		
         this.lblJ2 = new JLabel("Joueur Bleu 2 : " + this.nomJ2, JLabel.CENTER); //getNom()
@@ -144,7 +144,7 @@ public class IHMGuiV2 extends Fenetre implements ActionListener
         this.lblJ2.setFont(this.font18);
         this.panelJoueur.add(this.lblJ2);
         
-        visuJ2 = new Visu();
+        visuJ2 = new VisuV2();
         this.panelJoueur.add(this.visuJ2);
 		
         this.add(this.panelJoueur);

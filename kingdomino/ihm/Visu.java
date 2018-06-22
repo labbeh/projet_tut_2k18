@@ -12,7 +12,6 @@ import java.awt.Graphics2D;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.geom.AffineTransform;
 import javax.swing.JPanel;
 
 import java.util.ArrayList;

@@ -30,9 +30,7 @@ public class Controleur
         
         this.tabJoueur     = new Joueur[]{new Joueur(nomJ1, "bleu"), new Joueur(nomJ2, "rouge")};
         this.joueurCourant = 0;
-        
-        //j = new JeuV2();
-        //j.jouer();
+
         this.initPioche();
         this.ihm = new IHMGuiV2(this);
     }
